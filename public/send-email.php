@@ -11,7 +11,7 @@ header('Content-Type: application/json');
 
 // 2. Configuration
 $to_email = "ronan.van.stokkom@de.ey.com"; // Your email address
-$subject_prefix = "[Bug Hunt Support] ";
+$subject_prefix = "[Testing Next] ";
 
 // 3. Get the POST data
 $input = file_get_contents('php://input');
