@@ -106,8 +106,6 @@ export function ContactPage() {
       } else {
         setServerError(result.message || "Failed to send message.");
       }
-    } catch (err) {
-      setServerError("An error occurred while sending the message. Please try again later.");
     } finally {
       setIsSending(false);
     }
@@ -218,19 +216,6 @@ export function ContactPage() {
                 rows={6}
               />
               {errors.message && <p className={styles.errMsg}>{errors.message}</p>}
-            </div>
-          </div>
-
-          {/* Reminder: mailto is the submission mechanism, not a backend */}
-          <div className={styles.notice}>
-            <svg viewBox="0 0 20 20" fill="none" width="16" height="16" style={{ flexShrink: 0 }} aria-hidden="true">
-              <path d="M10 2.5L18.5 17H1.5L10 2.5Z" fill="#f5c518" stroke="#d97706" strokeWidth="1" strokeLinejoin="round" />
-              <path d="M10 8.5v3.5" stroke="#92400e" strokeWidth="1.8" strokeLinecap="round" />
-              <circle cx="10" cy="14.5" r="0.9" fill="#92400e" />
-            </svg>
-            <div className={styles.noticeText}>
-              <span>This page design is for a future feature.</span>
-              <span>Contact submission functionality may be implemented later.</span>
             </div>
           </div>
 
