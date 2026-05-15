@@ -1,0 +1,210 @@
+.card {
+  background: var(--color-card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  flex: 1;
+  min-width: 0;
+}
+
+.iconCircle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #ebebeb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.iconCircle svg {
+  width: 42px;
+  height: 42px;
+}
+
+.textHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+  width: 100%;
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.description {
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: #e8eaed;
+  border: none;
+  margin: 0;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+}
+
+.checkIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.statusLoading {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  text-align: center;
+  width: 100%;
+}
+
+.errorBox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: var(--color-error-bg);
+  border: 1px solid var(--color-error-border);
+  border-radius: var(--radius-sm);
+  width: 100%;
+}
+
+.errorIcon {
+  font-size: var(--font-size-md);
+  color: var(--color-error-text);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.errorTitle {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-error-text);
+  margin-bottom: 2px;
+}
+
+.errorMessage {
+  font-size: var(--font-size-xs);
+  color: var(--color-error-text);
+  opacity: 0.85;
+  line-height: 1.5;
+}
+
+.successBox {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: #f0fdf4;
+  border: 1px solid #b7ebc8;
+  border-radius: var(--radius-sm);
+  width: 100%;
+}
+
+.successIcon {
+  font-size: var(--font-size-md);
+  color: #16a34a;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.successText {
+  font-size: var(--font-size-sm);
+  color: #15803d;
+}
+
+.buttonRow {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  width: 100%;
+  margin-top: auto;
+}
+
+.secondaryButton {
+  flex: 1;
+  padding: var(--space-md);
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 1.5px solid var(--color-dropzone-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.secondaryButton:hover {
+  border-color: var(--color-text-secondary);
+  color: var(--color-text-primary);
+}
+
+.secondaryButton:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Dark button — matches the reference image */
+.primaryButton {
+  flex: 2;
+  padding: var(--space-md) var(--space-lg);
+  background: #1a1d26;
+  color: #ffffff;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  transition: background var(--transition-fast), transform var(--transition-fast),
+    opacity var(--transition-fast);
+  width: 100%;
+}
+
+.primaryButton:not(:disabled):hover {
+  background: #2c3040;
+  transform: translateY(-1px);
+}
+
+.primaryButton:not(:disabled):active {
+  transform: translateY(0);
+}
+
+.primaryButton:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.primaryButton:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}

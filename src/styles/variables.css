@@ -1,0 +1,56 @@
+:root {
+  /* Colors */
+  --color-bg-start: #0d0f14;
+  --color-bg-end: #1a1f2e;
+  --color-accent: #f5c518;
+  --color-accent-hover: #e0b010;
+  --color-accent-text: #1a1200;
+  --color-card-bg: #ffffff;
+  --color-card-border: rgba(255, 255, 255, 0.08);
+  --color-text-primary: #1a1d26;
+  --color-text-secondary: #5a6070;
+  --color-text-on-dark: #e8eaf0;
+  --color-text-muted-dark: #8a90a0;
+  --color-panel-bg: rgba(255, 255, 255, 0.05);
+  --color-panel-border: rgba(255, 255, 255, 0.1);
+  --color-dropzone-bg: #f8f9fb;
+  --color-dropzone-border: #d0d5dd;
+  --color-dropzone-border-active: #f5c518;
+  --color-dropzone-bg-active: #fffbeb;
+  --color-error-text: #c0392b;
+  --color-error-bg: #fdf2f2;
+  --color-error-border: #e8c0be;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Typography */
+  --font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 2.75rem;
+
+  /* Borders */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  /* Shadows */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.18), 0 1px 4px rgba(0, 0, 0, 0.08);
+  --shadow-button: 0 2px 8px rgba(245, 197, 24, 0.35);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+}

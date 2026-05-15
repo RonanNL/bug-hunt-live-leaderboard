@@ -1,0 +1,214 @@
+/* ── Overlay ──────────────────────────────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 12, 18, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  padding: var(--space-lg);
+  animation: overlayIn 180ms ease both;
+}
+
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Modal card ───────────────────────────────────────────────────────────── */
+.modal {
+  background: #ffffff;
+  border-radius: 20px;
+  max-width: 580px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32), 0 4px 16px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  animation: modalIn 200ms cubic-bezier(0.34, 1.3, 0.64, 1) both;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.94) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ── Non-scrolling header (X button row) ─────────────────────────────────── */
+.modalHeader {
+  display: flex;
+  justify-content: flex-end;
+  padding: var(--space-md) var(--space-md) 0;
+  flex-shrink: 0;
+}
+
+/* ── X button ─────────────────────────────────────────────────────────────── */
+.xBtn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 50%;
+  color: #6b7280;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.xBtn:hover { background: #e5e7eb; color: #111827; }
+.xBtn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+/* ── Scrollable body ──────────────────────────────────────────────────────── */
+.scrollBody {
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-xl) var(--space-xl);
+  scrollbar-width: thin;
+  scrollbar-color: #e5e7eb #f9fafb;
+}
+
+.scrollBody::-webkit-scrollbar { width: 6px; }
+.scrollBody::-webkit-scrollbar-track { background: #f9fafb; border-radius: 3px; }
+.scrollBody::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 3px; }
+
+/* ── Shield icon ──────────────────────────────────────────────────────────── */
+.iconWrap {
+  width: 68px;
+  height: 68px;
+  background: #fffbeb;
+  border-radius: 50%;
+  border: 2px solid #fde68a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: var(--space-sm);
+}
+
+/* ── Title ────────────────────────────────────────────────────────────────── */
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  color: #111827;
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+/* ── Disclaimer body text ─────────────────────────────────────────────────── */
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+.body p {
+  font-size: var(--font-size-sm);
+  color: #374151;
+  line-height: 1.7;
+}
+
+/* ── Checkbox row ─────────────────────────────────────────────────────────── */
+.checkLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  width: 100%;
+  cursor: pointer;
+  padding: var(--space-md);
+  border: 1.5px solid #e5e7eb;
+  border-radius: var(--radius-sm);
+  background: #f9fafb;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.checkLabel:hover {
+  border-color: var(--color-accent);
+  background: #fffbeb;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  accent-color: var(--color-accent);
+  cursor: pointer;
+}
+
+.checkbox:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.checkText {
+  font-size: var(--font-size-sm);
+  color: #374151;
+  line-height: 1.55;
+  font-weight: 500;
+}
+
+/* ── Action buttons ───────────────────────────────────────────────────────── */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.confirmBtn {
+  width: 100%;
+  padding: var(--space-md);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+/* Enabled state */
+.confirmBtn:not(:disabled) {
+  background: var(--color-accent);
+  color: var(--color-accent-text);
+  box-shadow: var(--shadow-button);
+  cursor: pointer;
+}
+.confirmBtn:not(:disabled):hover { background: var(--color-accent-hover); transform: translateY(-1px); }
+.confirmBtn:not(:disabled):active { transform: translateY(0); }
+.confirmBtn:not(:disabled):focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+/* Disabled state */
+.confirmBtn:disabled {
+  background: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.cancelBtn {
+  width: 100%;
+  padding: var(--space-md);
+  background: #ffffff;
+  border: 1.5px solid #d1d5db;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: #374151;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+.cancelBtn:hover { background: #f9fafb; border-color: #9ca3af; }
+.cancelBtn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .modal { border-radius: var(--radius-lg); }
+  .scrollBody { padding: var(--space-sm) var(--space-md) var(--space-lg); }
+}

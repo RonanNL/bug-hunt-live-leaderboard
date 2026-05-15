@@ -1,0 +1,135 @@
+.page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: var(--space-3xl) var(--space-xl) var(--space-xl);
+  overflow: hidden;
+}
+
+/* Large yellow geometric wedge — right side of the background */
+.page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 38%;
+  height: 100%;
+  background: var(--color-accent);
+  clip-path: polygon(42% 0%, 100% 0%, 100% 100%, 0% 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-2xl);
+}
+
+.iconWrapper {
+  color: var(--color-accent);
+  width: 52px;
+  height: 52px;
+  margin-bottom: var(--space-xs);
+}
+
+.targetIcon {
+  width: 100%;
+  height: 100%;
+}
+
+.title {
+  font-size: clamp(1.75rem, 5vw, var(--font-size-4xl));
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.titleAccent {
+  color: var(--color-accent);
+}
+
+.divider {
+  width: 320px;
+  max-width: 80%;
+  height: 1.5px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-accent) 25%,
+    var(--color-accent) 75%,
+    transparent 100%
+  );
+  border: none;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted-dark);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  max-width: 980px;
+  width: 100%;
+  margin: 0 auto;
+  flex: 1;
+}
+
+.cardsGrid {
+  display: flex;
+  gap: var(--space-xl);
+  align-items: stretch;
+}
+
+.footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-xl);
+  margin-top: var(--space-xl);
+}
+
+.version {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted-dark);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 700px) {
+  .page {
+    padding: var(--space-xl) var(--space-md) var(--space-md);
+  }
+
+  .page::before {
+    display: none;
+  }
+
+  .cardsGrid {
+    flex-direction: column;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .divider {
+    width: 200px;
+  }
+}
