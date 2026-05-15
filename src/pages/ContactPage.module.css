@@ -164,19 +164,29 @@
   line-height: 1.5;
 }
 
-/* Success banner */
-.successBanner {
+/* Banner styles */
+.successBanner,
+.errorBanner {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
   padding: var(--space-sm) var(--space-md);
-  background: #f0fdf4;
-  border: 1px solid #86efac;
   border-radius: var(--radius-sm);
   font-size: var(--font-size-xs);
-  color: #15803d;
   font-weight: 500;
   line-height: 1.5;
+}
+
+.successBanner {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  color: #15803d;
+}
+
+.errorBanner {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
 }
 
 /* Form action buttons */
@@ -200,7 +210,13 @@
   letter-spacing: 0.06em;
   color: var(--color-accent-text);
   box-shadow: var(--shadow-button);
-  transition: background var(--transition-fast), transform var(--transition-fast);
+  transition: background var(--transition-fast), transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.sendBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
 }
 .sendBtn:hover { background: var(--color-accent-hover); transform: translateY(-1px); }
 .sendBtn:active { transform: translateY(0); }
