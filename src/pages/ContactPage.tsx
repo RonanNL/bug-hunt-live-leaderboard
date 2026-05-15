@@ -52,6 +52,8 @@ export function ContactPage() {
   const [form, setForm] = useState<FormData>(EMPTY);
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const handleTabChange = (tab: TabId) => {
     if (tab === "leaderboard") navigateTo("leaderboard");
@@ -80,14 +82,35 @@ export function ContactPage() {
     return Object.keys(e).length === 0;
   };
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!validate()) return;
-    const subject = encodeURIComponent(`[Bug Hunt Support] ${form.subject}`);
-    const body = encodeURIComponent(
-      `From: ${form.fullName}\nEmail: ${form.email}\nCompany / Team: ${form.companyOrTeam || "N/A"}\n\n${form.message}`
-    );
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    setSubmitted(true);
+    
+    setIsSending(true);
+    setServerError(null);
+    setSubmitted(false);
+
+    try {
+      const response = await fetch("./send-email.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitted(true);
+        setForm(EMPTY); // Clear form on success
+      } else {
+        setServerError(result.message || "Failed to send message.");
+      }
+    } catch (err) {
+      setServerError("An error occurred while sending the message. Please try again later.");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const handleClear = () => {
@@ -216,16 +239,32 @@ export function ContactPage() {
               <svg viewBox="0 0 20 20" fill="none" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" width="16" height="16" aria-hidden="true">
                 <polyline points="3,10 8,15 17,5" strokeLinejoin="round" />
               </svg>
-              Your email client has been opened with the message pre-filled. Send it from there to submit.
+              Thank you! Your message has been sent successfully.
+            </div>
+          )}
+
+          {serverError && (
+            <div className={styles.errorBanner} role="alert">
+              <svg viewBox="0 0 20 20" fill="none" stroke="#dc2626" strokeWidth="2" strokeLinecap="round" width="16" height="16" aria-hidden="true">
+                <circle cx="10" cy="10" r="8" />
+                <line x1="10" y1="6" x2="10" y2="10" />
+                <line x1="10" y1="14" x2="10.01" y2="14" />
+              </svg>
+              {serverError}
             </div>
           )}
 
           <div className={styles.formActions}>
-            <button className={styles.sendBtn} onClick={handleSend} type="button">
+            <button 
+              className={styles.sendBtn} 
+              onClick={handleSend} 
+              type="button"
+              disabled={isSending}
+            >
               <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="16" height="16" aria-hidden="true">
                 <path d="M17 3L2 9l5.5 2.5L10 17l2-5.5L17 3z" />
               </svg>
-              SEND MESSAGE
+              {isSending ? "SENDING..." : "SEND MESSAGE"}
             </button>
             <button className={styles.clearBtn} onClick={handleClear} type="button">
               <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" width="16" height="16" aria-hidden="true">
