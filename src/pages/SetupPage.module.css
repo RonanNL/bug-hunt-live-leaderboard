@@ -220,3 +220,13 @@
   .content { padding: var(--space-md); }
   .tabsWrapper { padding: 0 var(--space-md); }
 }
+
+@media (max-width: 900px) and (orientation: portrait) {
+  .twoCol {
+    align-items: stretch;
+  }
+
+  .rightWide {
+    width: 100%;
+  }
+}

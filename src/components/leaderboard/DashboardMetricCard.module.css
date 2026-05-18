@@ -33,6 +33,14 @@
   min-width: 0;
 }
 
+.defaultText {
+  display: inline;
+}
+
+.compactText {
+  display: none;
+}
+
 .label {
   font-size: 10px;
   font-weight: 700;
@@ -66,5 +74,17 @@
     align-items: flex-start;
     gap: var(--space-sm);
     padding: var(--space-md);
+  }
+
+  .defaultText {
+    display: none;
+  }
+
+  .compactText {
+    display: inline;
+  }
+
+  .helper {
+    display: none;
   }
 }

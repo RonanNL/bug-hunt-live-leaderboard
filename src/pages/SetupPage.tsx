@@ -40,7 +40,7 @@ import {
   getEntryLabel,
   getCurrentLeaderSummary,
 } from "../logic/ranking";
-import { formatTime } from "../logic/timer";
+import { formatTime, formatTimeHoursMinutes } from "../logic/timer";
 import { DEMO_NAMES } from "../logic/participants";
 import type { BugHuntMode } from "../types/session";
 import styles from "./SetupPage.module.css";
@@ -112,6 +112,7 @@ export function SetupPage() {
       <div className={styles.dashboardRow}>
         <DashboardMetricCard
           label={entryLabel.count}
+          compactLabel={session.mode === "team" ? "Teams:" : "Participants:"}
           value={String(session.mode === "team" ? session.teams.length : session.participants.length)}
           helperText={entryLabel.helper}
           iconBg="#eff6ff"
@@ -125,6 +126,7 @@ export function SetupPage() {
         />
         <DashboardMetricCard
           label={t("leaderboard.metrics.bugs_found")}
+          compactLabel="Total:"
           value={String(totalBugs)}
           helperText={session.mode === "team" ? t("leaderboard.metrics.bugs_across_teams") : t("leaderboard.metrics.bugs_across_participants")}
           iconBg="#fffbeb"
@@ -137,6 +139,7 @@ export function SetupPage() {
         />
         <DashboardMetricCard
           label={leaderSummary.isMultiple ? t("leaderboard.leaders_title") : t("leaderboard.leader_title")}
+          compactLabel="Leader:"
           value={leaderSummary.label}
           helperText={leaderSummary.helperText}
           iconBg="#f0fdf4"
@@ -148,7 +151,9 @@ export function SetupPage() {
         />
         <DashboardMetricCard
           label={t("leaderboard.metrics.time_elapsed")}
+          compactLabel="Time:"
           value={formatTime(session.timer.elapsedSeconds)}
+          compactValue={formatTimeHoursMinutes(session.timer.elapsedSeconds)}
           helperText={
             session.timer.status === "not_started"
               ? t("leaderboard.status_not_started")
