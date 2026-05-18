@@ -642,7 +642,7 @@ const resources = {
         },
         "details": {
           "title": "HILFE-DETAILS",
-          "email_label": "HILFE-E-Mail",
+          "email_label": "Hilfe-E-Mail",
           "response_time_label": "Antwortzeit",
           "response_time_value": "Normalerweise innerhalb von 2 Werktagen",
           "availability_label": "Verfügbarkeit",
