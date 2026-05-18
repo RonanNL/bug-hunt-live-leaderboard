@@ -10,6 +10,8 @@
  */
 import { useSession, SessionProvider } from "./state/sessionStore";
 import { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { LandingPage } from "./pages/LandingPage";
 import { LeaderboardPage } from "./pages/LeaderboardPage";
 import { SetupPage } from "./pages/SetupPage";
@@ -20,29 +22,40 @@ import type { AppPage } from "./state/sessionStore";
 import "./styles/globals.css";
 
 const PAGES_WITH_LEAVE_WARNING: AppPage[] = ["setup", "leaderboard", "contact"];
-const LEAVE_WARNING_TEXT =
-  "Leave this page? Session data is not stored automatically and will be lost. Please export your session first.";
 
 function AppRouter() {
   const { currentPage, startSession, loadSession } = useSession();
+  const { t, i18n } = useTranslation();
+  const location = useLocation();
 
   const handleStartNewSession = () => startSession(createBlankSession());
   const handleImportSession = (session: BugHuntSession) => loadSession(session);
+
+  useEffect(() => {
+    const nextLanguage = location.pathname.toLowerCase().startsWith("/de") ? "de" : "en";
+    if (i18n.resolvedLanguage !== nextLanguage) {
+      void i18n.changeLanguage(nextLanguage);
+    }
+  }, [location.pathname, i18n]);
 
   useEffect(() => {
     if (!PAGES_WITH_LEAVE_WARNING.includes(currentPage)) return;
 
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
       event.preventDefault();
-      event.returnValue = LEAVE_WARNING_TEXT;
-      return LEAVE_WARNING_TEXT;
+      const warningText = t(
+        "messages.leave_warning",
+        "Leave this page? Session data is not stored automatically and will be lost unless you exported it."
+      );
+      event.returnValue = warningText;
+      return warningText;
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, [currentPage]);
+  }, [currentPage, t]);
 
   if (currentPage === "landing") {
     return (
@@ -62,8 +75,13 @@ function AppRouter() {
 
 export default function App() {
   return (
-    <SessionProvider>
-      <AppRouter />
-    </SessionProvider>
+    <Router>
+      <SessionProvider>
+        <Routes>
+          <Route path="/de/*" element={<AppRouter />} />
+          <Route path="/*" element={<AppRouter />} />
+        </Routes>
+      </SessionProvider>
+    </Router>
   );
 }

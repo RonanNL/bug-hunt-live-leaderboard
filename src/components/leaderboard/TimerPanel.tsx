@@ -12,6 +12,7 @@
  *
  * "ENDE" is the German word for "end" — it resets the timer to 00:00:00.
  */
+import { useTranslation } from "react-i18next";
 import type { TimerStatus } from "../../types/session";
 import { formatTime } from "../../logic/timer";
 import styles from "./TimerPanel.module.css";
@@ -24,13 +25,9 @@ type Props = {
   onReset: () => void;
 };
 
-const STATUS_LABELS: Record<TimerStatus, string> = {
-  not_started: "Not started",
-  running: "Running",
-  paused: "Paused",
-};
-
 export function TimerPanel({ elapsedSeconds, status, onStart, onPause, onReset }: Props) {
+  const { t } = useTranslation();
+
   const handlePrimaryAction = () => {
     if (status === "running") {
       onPause();
@@ -39,7 +36,9 @@ export function TimerPanel({ elapsedSeconds, status, onStart, onPause, onReset }
     }
   };
 
-  const primaryLabel = status === "running" ? "PAUSE" : status === "paused" ? "RESUME" : "START";
+  const primaryLabel = status === "running" ? t("leaderboard.timer.pause") : status === "paused" ? t("leaderboard.timer.resume") : t("leaderboard.timer.start");
+
+  const statusLabel = t(`leaderboard.timer.status_${status}`);
 
   return (
     <div className={styles.panel}>
@@ -57,10 +56,10 @@ export function TimerPanel({ elapsedSeconds, status, onStart, onPause, onReset }
         </svg>
 
         <div className={styles.timerDisplay}>
-          <span className={styles.timerLabel}>BUG HUNT TIMER</span>
+          <span className={styles.timerLabel}>{t("leaderboard.timer.label")}</span>
           <span className={styles.timerTime}>{formatTime(elapsedSeconds)}</span>
           <span className={`${styles.timerStatus} ${styles[status]}`}>
-            {STATUS_LABELS[status]}
+            {statusLabel}
             {status === "running" && <span className={styles.dot} aria-hidden="true" />}
           </span>
         </div>
@@ -93,11 +92,11 @@ export function TimerPanel({ elapsedSeconds, status, onStart, onPause, onReset }
             className={styles.endeBtn}
             onClick={onReset}
             type="button"
-            aria-label="Stop and reset timer"
+            aria-label={t("leaderboard.timer.ende_aria")}
             disabled={status === "not_started"}
           >
             <span className={styles.endeSquare} aria-hidden="true" />
-            ENDE
+            {t("leaderboard.timer.ende")}
           </button>
         </div>
       </div>

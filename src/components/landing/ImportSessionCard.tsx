@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import type { BugHuntSession } from "../../types/session";
 import { parseAndValidateFile } from "../../logic/importSession";
 import { FileDropzone } from "./FileDropzone";
@@ -38,6 +39,7 @@ function CheckItem({ text }: { text: string }) {
 }
 
 export function ImportSessionCard({ onImportSession }: Props) {
+  const { t } = useTranslation();
   const [importState, setImportState] = useState<ImportState>({ status: "idle" });
 
   const handleFile = async (file: File) => {
@@ -79,23 +81,23 @@ export function ImportSessionCard({ onImportSession }: Props) {
       </div>
 
       <div className={styles.textHeader}>
-        <h2 className={styles.title}>LOAD EXISTING BUG HUNT</h2>
-        <p className={styles.description}>Import a previously exported JSON file.</p>
+        <h2 className={styles.title}>{t("landing.import_card.title")}</h2>
+        <p className={styles.description}>{t("landing.import_card.desc")}</p>
       </div>
 
       <hr className={styles.divider} aria-hidden="true" />
 
       <ul className={styles.features}>
-        <CheckItem text="Continue where you left off" />
-        <CheckItem text="All data will be restored" />
-        <CheckItem text="No data is stored automatically" />
+        <CheckItem text={t("landing.import_card.feature_1")} />
+        <CheckItem text={t("landing.import_card.feature_2")} />
+        <CheckItem text={t("landing.import_card.feature_3")} />
       </ul>
 
       <FileDropzone onFile={handleFile} />
 
       {importState.status === "loading" && (
         <p className={styles.statusLoading} role="status">
-          Validating {importState.fileName}…
+          {t("landing.import_card.validating", { fileName: importState.fileName })}
         </p>
       )}
 
@@ -103,7 +105,7 @@ export function ImportSessionCard({ onImportSession }: Props) {
         <div className={styles.errorBox} role="alert">
           <span className={styles.errorIcon} aria-hidden="true">✕</span>
           <div>
-            <p className={styles.errorTitle}>Could not load session</p>
+            <p className={styles.errorTitle}>{t("landing.import_card.error_title")}</p>
             <p className={styles.errorMessage}>{importState.message}</p>
           </div>
         </div>
@@ -113,7 +115,7 @@ export function ImportSessionCard({ onImportSession }: Props) {
         <div className={styles.successBox} role="status">
           <span className={styles.successIcon} aria-hidden="true">✓</span>
           <p className={styles.successText}>
-            <strong>{importState.fileName}</strong> validated successfully.
+            <strong>{importState.fileName}</strong> {t("landing.import_card.success_text")}
           </p>
         </div>
       )}
@@ -125,7 +127,7 @@ export function ImportSessionCard({ onImportSession }: Props) {
             onClick={handleReset}
             type="button"
           >
-            Choose another file
+            {t("landing.import_card.choose_another")}
           </button>
         )}
         <button
@@ -135,7 +137,7 @@ export function ImportSessionCard({ onImportSession }: Props) {
           type="button"
           aria-disabled={!isReady || isLoading}
         >
-          LOAD SESSION
+          {t("landing.import_card.button")}
         </button>
       </div>
     </div>

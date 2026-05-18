@@ -10,6 +10,7 @@
  * The actual filtering/blurring is applied by LeaderboardPage via `isEntryVisible`
  * from ranking.ts. This component is a pure controlled input.
  */
+import { useTranslation } from "react-i18next";
 import type { VisibilityMode } from "../../types/session";
 import styles from "./VisibilitySelector.module.css";
 
@@ -19,6 +20,8 @@ type Props = {
 };
 
 export function VisibilitySelector({ value, onChange }: Props) {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.wrapper}>
       <svg
@@ -40,11 +43,11 @@ export function VisibilitySelector({ value, onChange }: Props) {
         className={styles.select}
         value={value}
         onChange={(e) => onChange(e.target.value as VisibilityMode)}
-        aria-label="Visibility setting"
+        aria-label={t("leaderboard.visibility.label")}
       >
-        <option value="all">Show all</option>
-        <option value="top3">Top 3</option>
-        <option value="top10">Top 10</option>
+        <option value="all">{t("leaderboard.visibility.all")}</option>
+        <option value="top3">{t("leaderboard.visibility.top3")}</option>
+        <option value="top10">{t("leaderboard.visibility.top10")}</option>
       </select>
       <svg
         className={styles.chevron}

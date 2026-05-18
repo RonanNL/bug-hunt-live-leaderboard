@@ -15,6 +15,8 @@
  * InfoPanel below the cards reinforces the privacy-first / no-server-storage message.
  */
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useLocation, useNavigate } from "react-router-dom";
 import type { BugHuntSession } from "../types/session";
 import { StartSessionCard } from "../components/landing/StartSessionCard";
 import { ImportSessionCard } from "../components/landing/ImportSessionCard";
@@ -30,10 +32,15 @@ type Props = {
 };
 
 export function LandingPage({ onStartNewSession, onImportSession }: Props) {
+  const { t, i18n } = useTranslation();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [isDisclaimerOpen, setIsDisclaimerOpen] = useState(false);
   const [isAcknowledged, setIsAcknowledged] = useState(false);
   const [pendingAction, setPendingAction] = useState<PendingAction>(null);
   const [pendingSession, setPendingSession] = useState<BugHuntSession | null>(null);
+
+  const isGerman = location.pathname.toLowerCase().startsWith("/de");
 
   const openDisclaimer = (action: PendingAction, session?: BugHuntSession) => {
     setPendingAction(action);
@@ -66,8 +73,35 @@ export function LandingPage({ onStartNewSession, onImportSession }: Props) {
     }
   };
 
+  const handleLanguageSwitch = (language: "en" | "de") => {
+    const targetPath = language === "de" ? "/de" : "/";
+    if (location.pathname !== targetPath) {
+      navigate(targetPath);
+    }
+    void i18n.changeLanguage(language);
+  };
+
   return (
     <div className={styles.page}>
+      <div className={styles.languageSwitcher} role="group" aria-label={t("common.language")}>
+        <button
+          type="button"
+          className={`${styles.languageButton} ${!isGerman ? styles.languageButtonActive : ""}`}
+          onClick={() => handleLanguageSwitch("en")}
+          aria-pressed={!isGerman}
+        >
+          EN
+        </button>
+        <button
+          type="button"
+          className={`${styles.languageButton} ${isGerman ? styles.languageButtonActive : ""}`}
+          onClick={() => handleLanguageSwitch("de")}
+          aria-pressed={isGerman}
+        >
+          DE
+        </button>
+      </div>
+
       <header className={styles.header}>
         <div className={styles.iconWrapper} aria-hidden="true">
           <svg
@@ -93,7 +127,14 @@ export function LandingPage({ onStartNewSession, onImportSession }: Props) {
 
         <hr className={styles.divider} aria-hidden="true" />
 
-        <p className={styles.subtitle}>A free gamified testing tool for live exploratory test sessions.<br />Create a session, project it on-screen, and motivate teams to find bugs together.</p>
+        <p className={styles.subtitle}>
+          {t("landing.subtitle").split("\n").map((line, i) => (
+            <span key={i}>
+              {line}
+              {i === 0 && <br />}
+            </span>
+          ))}
+        </p>
       </header>
 
       <main className={styles.main}>
@@ -106,7 +147,7 @@ export function LandingPage({ onStartNewSession, onImportSession }: Props) {
       </main>
 
       <footer className={styles.footer}>
-        <p className={styles.version}>Version 1.0.0</p>
+        <p className={styles.version}>{t("common.version")}</p>
       </footer>
 
       <UsageDisclaimerModal

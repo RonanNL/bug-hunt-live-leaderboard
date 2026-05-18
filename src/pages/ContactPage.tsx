@@ -13,6 +13,7 @@
  * The contact form is marked with a warning notice because actual backend submission
  * is not implemented — mailto is the only mechanism.
  */
+import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { useSession } from "../state/sessionStore";
 import { AppHeader } from "../components/layout/AppHeader";
@@ -44,6 +45,7 @@ type FormErrors = {
 const EMPTY: FormData = { fullName: "", email: "", companyOrTeam: "", subject: "", message: "" };
 
 export function ContactPage() {
+  const { t } = useTranslation();
   const { session, clearSession, navigateTo } = useSession();
   const [showCloseConfirm, setShowCloseConfirm] = useState(false);
   const [showUserGuide, setShowUserGuide] = useState(false);
@@ -70,14 +72,14 @@ export function ContactPage() {
 
   const validate = (): boolean => {
     const e: FormErrors = {};
-    if (!form.fullName.trim()) e.fullName = "Full name is required.";
+    if (!form.fullName.trim()) e.fullName = t("contact.form.error_name");
     if (!form.email.trim()) {
-      e.email = "Email address is required.";
+      e.email = t("contact.form.error_email");
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      e.email = "Please enter a valid email address.";
+      e.email = t("contact.form.error_email_invalid");
     }
-    if (!form.subject.trim()) e.subject = "Subject is required.";
-    if (!form.message.trim()) e.message = "Message is required.";
+    if (!form.subject.trim()) e.subject = t("contact.form.error_subject");
+    if (!form.message.trim()) e.message = t("contact.form.error_message");
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -104,7 +106,7 @@ export function ContactPage() {
         setSubmitted(true);
         setForm(EMPTY); // Clear form on success
       } else {
-        setServerError(result.message || "Failed to send message.");
+        setServerError(result.message || t("contact.form.server_error_default"));
       }
     } finally {
       setIsSending(false);
@@ -129,9 +131,9 @@ export function ContactPage() {
       </div>
 
       <div className={styles.heading}>
-        <h2 className={styles.headingTitle}>SUPPORT</h2>
+        <h2 className={styles.headingTitle}>{t("contact.title")}</h2>
         <p className={styles.headingSubtitle}>
-          Get help for exploratory sessions, hoster setup, and bug hunt planning.
+          {t("contact.subtitle")}
         </p>
       </div>
 
@@ -140,18 +142,18 @@ export function ContactPage() {
 
         {/* ── LEFT: contact form card ───────────────────────────────────── */}
         <div className={styles.formCard}>
-          <h3 className={styles.cardTitle}>REQUEST SUPPORT</h3>
+          <h3 className={styles.cardTitle}>{t("contact.form.title")}</h3>
 
           <div className={styles.formGrid}>
             <label className={styles.label} htmlFor="cf-name">
-              Full Name <span className={styles.req}>*</span>
+              {t("contact.form.name")} <span className={styles.req}>*</span>
             </label>
             <div className={styles.fieldWrap}>
               <input
                 id="cf-name"
                 className={`${styles.input} ${errors.fullName ? styles.inputErr : ""}`}
                 type="text"
-                placeholder="Enter your full name"
+                placeholder={t("contact.form.placeholder_name")}
                 value={form.fullName}
                 onChange={update("fullName")}
                 autoComplete="name"
@@ -160,14 +162,14 @@ export function ContactPage() {
             </div>
 
             <label className={styles.label} htmlFor="cf-email">
-              Email Address <span className={styles.req}>*</span>
+              {t("contact.form.email")} <span className={styles.req}>*</span>
             </label>
             <div className={styles.fieldWrap}>
               <input
                 id="cf-email"
                 className={`${styles.input} ${errors.email ? styles.inputErr : ""}`}
                 type="email"
-                placeholder="name@example.com"
+                placeholder={t("contact.form.placeholder_email")}
                 value={form.email}
                 onChange={update("email")}
                 autoComplete="email"
@@ -176,14 +178,14 @@ export function ContactPage() {
             </div>
 
             <label className={styles.label} htmlFor="cf-company">
-              Company / Team <span className={styles.opt}>(optional)</span>
+              {t("contact.form.company")} <span className={styles.opt}>{t("contact.form.optional")}</span>
             </label>
             <div className={styles.fieldWrap}>
               <input
                 id="cf-company"
                 className={styles.input}
                 type="text"
-                placeholder="Enter your company or team"
+                placeholder={t("contact.form.placeholder_company")}
                 value={form.companyOrTeam}
                 onChange={update("companyOrTeam")}
                 autoComplete="organization"
@@ -191,14 +193,14 @@ export function ContactPage() {
             </div>
 
             <label className={styles.label} htmlFor="cf-subject">
-              Subject <span className={styles.req}>*</span>
+              {t("contact.form.subject")} <span className={styles.req}>*</span>
             </label>
             <div className={styles.fieldWrap}>
               <input
                 id="cf-subject"
                 className={`${styles.input} ${errors.subject ? styles.inputErr : ""}`}
                 type="text"
-                placeholder="What do you need help with?"
+                placeholder={t("contact.form.placeholder_subject")}
                 value={form.subject}
                 onChange={update("subject")}
               />
@@ -206,13 +208,13 @@ export function ContactPage() {
             </div>
 
             <label className={styles.label} htmlFor="cf-message">
-              Message <span className={styles.req}>*</span>
+              {t("contact.form.message")} <span className={styles.req}>*</span>
             </label>
             <div className={styles.fieldWrap}>
               <textarea
                 id="cf-message"
                 className={`${styles.textarea} ${errors.message ? styles.inputErr : ""}`}
-                placeholder="Describe your issue or the setup support you need..."
+                placeholder={t("contact.form.placeholder_message")}
                 value={form.message}
                 onChange={update("message")}
                 rows={6}
@@ -226,7 +228,7 @@ export function ContactPage() {
               <svg viewBox="0 0 20 20" fill="none" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" width="16" height="16" aria-hidden="true">
                 <polyline points="3,10 8,15 17,5" strokeLinejoin="round" />
               </svg>
-              Thank you! Your support request has been sent successfully.
+              {t("contact.form.success")}
             </div>
           )}
 
@@ -251,14 +253,14 @@ export function ContactPage() {
               <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="16" height="16" aria-hidden="true">
                 <path d="M17 3L2 9l5.5 2.5L10 17l2-5.5L17 3z" />
               </svg>
-              {isSending ? "SENDING..." : "SEND REQUEST"}
+              {isSending ? t("contact.form.sending") : t("contact.form.send")}
             </button>
             <button className={styles.clearBtn} onClick={handleClear} type="button">
               <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" width="16" height="16" aria-hidden="true">
                 <path d="M4 10a6 6 0 1112 0 6 6 0 01-12 0z" />
                 <path d="M4 10V6M4 6H8" />
               </svg>
-              CLEAR
+              {t("contact.form.clear")}
             </button>
           </div>
         </div>
@@ -268,7 +270,7 @@ export function ContactPage() {
 
           {/* Support Details */}
           <div className={styles.sideCard}>
-            <h3 className={styles.sideCardTitle}>SUPPORT DETAILS</h3>
+            <h3 className={styles.sideCardTitle}>{t("contact.details.title")}</h3>
             <div className={styles.detailRow}>
               <span className={styles.detailIcon}>
                 <svg viewBox="0 0 20 20" fill="none" stroke="#d97706" strokeWidth="1.6" width="18" height="18">
@@ -277,7 +279,7 @@ export function ContactPage() {
                 </svg>
               </span>
               <div>
-                <p className={styles.detailLabel}>Support Email</p>
+                <p className={styles.detailLabel}>{t("contact.details.email_label")}</p>
                 <p className={styles.detailValue}>{CONTACT_EMAIL}</p>
               </div>
             </div>
@@ -290,8 +292,8 @@ export function ContactPage() {
                 </svg>
               </span>
               <div>
-                <p className={styles.detailLabel}>Response Time</p>
-                <p className={styles.detailValue}>Typically within 2 business days</p>
+                <p className={styles.detailLabel}>{t("contact.details.response_time_label")}</p>
+                <p className={styles.detailValue}>{t("contact.details.response_time_value")}</p>
               </div>
             </div>
             <div className={styles.detailDivider} />
@@ -303,41 +305,41 @@ export function ContactPage() {
                 </svg>
               </span>
               <div>
-                <p className={styles.detailLabel}>Availability</p>
-                <p className={styles.detailValue}>Mon–Fri</p>
+                <p className={styles.detailLabel}>{t("contact.details.availability_label")}</p>
+                <p className={styles.detailValue}>{t("contact.details.availability_value")}</p>
               </div>
             </div>
           </div>
 
           {/* Helpful Links — open modal overlays */}
           <div className={styles.sideCard}>
-            <h3 className={styles.sideCardTitle}>SUPPORT RESOURCES</h3>
+            <h3 className={styles.sideCardTitle}>{t("contact.resources.title")}</h3>
             <div className={styles.linkList}>
-              <button className={styles.linkRow} type="button" aria-label="User Guide" onClick={() => setShowUserGuide(true)}>
+              <button className={styles.linkRow} type="button" aria-label={t("contact.links.guide")} onClick={() => setShowUserGuide(true)}>
                 <svg viewBox="0 0 20 20" fill="none" stroke="#374151" strokeWidth="1.6" width="16" height="16" aria-hidden="true">
                   <rect x="4" y="2" width="12" height="16" rx="1.5" />
                   <path strokeLinecap="round" d="M7 7h6M7 10.5h6M7 14h4" />
                 </svg>
-                <span className={styles.linkLabel}>User Guide</span>
+                <span className={styles.linkLabel}>{t("contact.links.guide")}</span>
                 <svg viewBox="0 0 16 16" fill="none" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" width="13" height="13" aria-hidden="true">
                   <path d="M6 4l4 4-4 4" />
                 </svg>
               </button>
-              <button className={styles.linkRow} type="button" aria-label="Bug Hunt Setup Tips" onClick={() => setShowSetupTips(true)}>
+              <button className={styles.linkRow} type="button" aria-label={t("contact.links.setup_tips")} onClick={() => setShowSetupTips(true)}>
                 <svg viewBox="0 0 20 20" fill="none" stroke="#374151" strokeWidth="1.6" width="16" height="16" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10 6c-2.2 0-3.5 1.6-3.5 3.5S7.8 13 10 13s3.5-1.6 3.5-3.5S12.2 6 10 6z" />
                   <path strokeLinecap="round" d="M4 10H2M18 10h-2M10 4V2M10 18v-2M5.5 5.5l-1.4-1.4M15.9 15.9l-1.4-1.4M14.5 5.5l1.4-1.4M4.1 15.9l1.4-1.4" />
                 </svg>
-                <span className={styles.linkLabel}>Bug Hunt Setup Tips</span>
+                <span className={styles.linkLabel}>{t("contact.links.setup_tips")}</span>
                 <svg viewBox="0 0 16 16" fill="none" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" width="13" height="13" aria-hidden="true">
                   <path d="M6 4l4 4-4 4" />
                 </svg>
               </button>
-              <button className={styles.linkRow} type="button" aria-label="Privacy Notice" onClick={() => setShowPrivacyNotice(true)}>
+              <button className={styles.linkRow} type="button" aria-label={t("contact.links.privacy")} onClick={() => setShowPrivacyNotice(true)}>
                 <svg viewBox="0 0 20 20" fill="none" stroke="#374151" strokeWidth="1.6" width="16" height="16" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10 2l6 2.5V10c0 4-2.5 6.5-6 8-3.5-1.5-6-4-6-8V4.5L10 2z" />
                 </svg>
-                <span className={styles.linkLabel}>Privacy Notice</span>
+                <span className={styles.linkLabel}>{t("contact.links.privacy")}</span>
                 <svg viewBox="0 0 16 16" fill="none" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" width="13" height="13" aria-hidden="true">
                   <path d="M6 4l4 4-4 4" />
                 </svg>
@@ -347,7 +349,7 @@ export function ContactPage() {
 
           {/* Data & Privacy summary */}
           <div className={styles.sideCard}>
-            <h3 className={styles.sideCardTitle}>DATA &amp; PRIVACY</h3>
+            <h3 className={styles.sideCardTitle}>{t("contact.data_privacy.title")}</h3>
             <div className={styles.privacyRow}>
               <span className={styles.privacyIcon} aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="1.6" width="24" height="24">
@@ -356,15 +358,14 @@ export function ContactPage() {
                 </svg>
               </span>
               <p className={styles.privacyText}>
-                Bug Hunt Live Leaderboard does not automatically store bug hunt data on any server.
-                JSON export/import is the only persistence mechanism available.
+                {t("contact.data_privacy.text")}
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      <footer className={styles.footer}>Version 1.0.0</footer>
+      <footer className={styles.footer}>{t("common.version")}</footer>
 
       <CloseSessionModal
         isOpen={showCloseConfirm}

@@ -13,6 +13,7 @@
  * The card is intentionally stateless — all data flows in through props and
  * all interactions bubble up through callbacks.
  */
+import { useTranslation } from "react-i18next";
 import styles from "./LeaderboardEntryCard.module.css";
 
 type Props = {
@@ -36,6 +37,7 @@ export function LeaderboardEntryCard({
   onIncrement,
   onDecrement,
 }: Props) {
+  const { t } = useTranslation();
   const isFirst = rank === 1;
   const progressPct = maxBugs > 0 ? (bugsFound / maxBugs) * 100 : 0;
 
@@ -51,10 +53,10 @@ export function LeaderboardEntryCard({
         <span className={styles.name}>{name}</span>
         {memberNames !== undefined && (
           <>
-            <span className={styles.memberCount}>{memberNames.length} members</span>
+            <span className={styles.memberCount}>{t("leaderboard.member_count", { count: memberNames.length })}</span>
             {memberNames.length > 0 && (
               <span className={styles.memberList}>
-                <strong>Members:</strong> {memberNames.join(", ")}
+                <strong>{t("leaderboard.members_label")}</strong> {memberNames.join(", ")}
               </span>
             )}
           </>
@@ -77,7 +79,7 @@ export function LeaderboardEntryCard({
 
       <div className={styles.bugCount}>
         <span className={styles.bugNumber}>{bugsFound}</span>
-        <span className={styles.bugLabel}>bugs</span>
+        <span className={styles.bugLabel}>{bugsFound === 1 ? t("leaderboard.bugs_singular") : t("leaderboard.bugs")}</span>
       </div>
 
       <div className={styles.controls}>
@@ -86,7 +88,7 @@ export function LeaderboardEntryCard({
           onClick={onDecrement}
           disabled={bugsFound === 0}
           type="button"
-          aria-label={`Remove bug from ${name}`}
+          aria-label={t("leaderboard.remove_bug_aria", { name })}
         >
           −
         </button>
@@ -94,7 +96,7 @@ export function LeaderboardEntryCard({
           className={styles.plusBtn}
           onClick={onIncrement}
           type="button"
-          aria-label={`Add bug to ${name}`}
+          aria-label={t("leaderboard.add_bug_aria", { name })}
         >
           +
         </button>

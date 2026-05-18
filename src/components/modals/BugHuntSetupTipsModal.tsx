@@ -10,6 +10,7 @@
  */
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { useTranslation } from "react-i18next";
 import styles from "./BugHuntSetupTipsModal.module.css";
 
 type Props = {
@@ -17,43 +18,11 @@ type Props = {
   onClose: () => void;
 };
 
-const TIPS = [
-  {
-    title: "Prepare Access",
-    text: "Make sure every participant can access the system under test before the session starts.",
-  },
-  {
-    title: "Clarify Missions",
-    text: "Explain the test missions clearly so everyone knows what to explore.",
-  },
-  {
-    title: "Provide Charters",
-    text: "Have charters or focus areas ready to guide the bug hunt without over-constraining participants.",
-  },
-  {
-    title: "Set Up Bug Reporting",
-    text: "Use a reporting tool such as MS Forms, MS Teams, Power Apps, ServiceNow, Pega, or another agreed system. Make sure everyone knows how to use it.",
-  },
-  {
-    title: "Capture Key Bug Details",
-    text: "Record essentials such as summary, steps to reproduce, environment, evidence, severity, and impact.",
-  },
-  {
-    title: "Explain Scoring",
-    text: "Make sure it is clear how points are assigned. This tool tracks bug counts and helps manage the session and winner only.",
-  },
-  {
-    title: "Keep It Exploratory",
-    text: "Let participants have fun and avoid over-constraining them. Exploration works best with room to think.",
-  },
-  {
-    title: "Plan and Motivate",
-    text: "Have a bug hunt strategy, cover the important planning aspects, include prizes or incentives, and keep participants engaged.",
-  },
-];
-
 export function BugHuntSetupTipsModal({ isOpen, onClose }: Props) {
+  const { t } = useTranslation();
   const dialogRef = useRef<HTMLDivElement>(null);
+
+  const tips = t("modals.tips.items", { returnObjects: true }) as { title: string; text: string }[];
 
   useEffect(() => {
     if (!isOpen) return;
@@ -108,7 +77,7 @@ export function BugHuntSetupTipsModal({ isOpen, onClose }: Props) {
       >
         {/* Non-scrolling header */}
         <div className={styles.modalHeader}>
-          <button className={styles.xBtn} onClick={onClose} type="button" aria-label="Close Bug Hunt Setup Tips">
+          <button className={styles.xBtn} onClick={onClose} type="button" aria-label={t("common.cancel")}>
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" width="14" height="14">
               <line x1="2" y1="2" x2="14" y2="14" />
               <line x1="14" y1="2" x2="2" y2="14" />
@@ -129,14 +98,14 @@ export function BugHuntSetupTipsModal({ isOpen, onClose }: Props) {
             </svg>
           </div>
 
-          <h2 id="bst-title" className={styles.title}>Bug Hunt Setup Tips</h2>
+          <h2 id="bst-title" className={styles.title}>{t("modals.tips.title")}</h2>
           <p id="bst-subtitle" className={styles.subtitle}>
-            Short guidance for planning and running an effective exploratory bug hunt.
+            {t("modals.tips.subtitle")}
           </p>
 
           <div className={styles.tipsScroll}>
             <ol className={styles.tipList} aria-label="Setup tips">
-              {TIPS.map((tip, i) => (
+              {tips.map((tip, i) => (
                 <li key={i} className={styles.tipRow}>
                   <span className={styles.badge} aria-hidden="true">{i + 1}</span>
                   <div className={styles.tipBody}>
@@ -148,26 +117,12 @@ export function BugHuntSetupTipsModal({ isOpen, onClose }: Props) {
             </ol>
           </div>
 
-          {/*<div className={styles.infoBox} role="note">*/}
-          {/*  <svg viewBox="0 0 20 20" fill="none" width="18" height="18" style={{ flexShrink: 0 }} aria-hidden="true">*/}
-          {/*    <circle cx="10" cy="8" r="5" stroke="#d97706" strokeWidth="1.6" />*/}
-          {/*    <path strokeLinecap="round" d="M8 13.5c0 1 4 1 4 0" stroke="#d97706" strokeWidth="1.4" />*/}
-          {/*    <path strokeLinecap="round" d="M10 11v2" stroke="#d97706" strokeWidth="1.6" />*/}
-          {/*  </svg>*/}
-          {/*  <p className={styles.infoText}>*/}
-          {/*    Bug hunts can be expensive because they involve many people. However, when done right,*/}
-          {/*    the return on investment can be significant because product quality is assessed by many*/}
-          {/*    people in a short timeframe.*/}
-          {/*  </p>*/}
-          {/*</div>*/}
-
           <div className={styles.footer}>
             <p className={styles.footerText}>
-              Need tailored support? Request a consultation or bug hunt session using the Send a
-              Message form on this page.
+              {t("modals.tips.footer_text")}
             </p>
             <button className={styles.closeBtn} onClick={onClose} type="button">
-              Close
+              {t("common.cancel")}
             </button>
           </div>
         </div>

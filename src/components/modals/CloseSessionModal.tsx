@@ -17,6 +17,7 @@
  */
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { useTranslation } from "react-i18next";
 import styles from "./CloseSessionModal.module.css";
 
 type Props = {
@@ -32,6 +33,7 @@ export function CloseSessionModal({
   onExportAndClose,
   onCloseWithoutSaving,
 }: Props) {
+  const { t } = useTranslation();
   const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -93,7 +95,7 @@ export function CloseSessionModal({
           className={styles.xBtn}
           onClick={onStayInSession}
           type="button"
-          aria-label="Stay in session"
+          aria-label={t("modals.close.btn_stay_label")}
         >
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" width="14" height="14">
             <line x1="2" y1="2" x2="14" y2="14" />
@@ -109,12 +111,11 @@ export function CloseSessionModal({
           </svg>
         </div>
 
-        <h2 id="close-modal-title" className={styles.title}>Close this session?</h2>
+        <h2 id="close-modal-title" className={styles.title}>{t("modals.close.title")}</h2>
 
         <div id="close-modal-desc" className={styles.body}>
           <p className={styles.bodyText}>
-            You are about to leave the current bug hunt session. You will return to the start
-            screen where you can start a new bug hunt or load a previously exported JSON session.
+            {t("modals.close.body")}
           </p>
 
           <div className={styles.warningBox} role="alert">
@@ -124,15 +125,15 @@ export function CloseSessionModal({
               <circle cx="10" cy="14.5" r="0.9" fill="#1a1200" />
             </svg>
             <div>
-              <p className={styles.warningTitle}>All data in this session will be permanently lost.</p>
+              <p className={styles.warningTitle}>{t("modals.close.warning_title")}</p>
               <p className={styles.warningSubtext}>
-                This application does not automatically store or recover session data.
+                {t("modals.close.warning_subtext")}
               </p>
             </div>
           </div>
 
           <p className={styles.exportReminder}>
-            To continue this bug hunt later, export the session as a JSON file before closing.
+            {t("modals.close.export_reminder")}
           </p>
         </div>
 
@@ -142,8 +143,8 @@ export function CloseSessionModal({
               <line x1="4" y1="4" x2="16" y2="16" />
               <line x1="16" y1="4" x2="4" y2="16" />
             </svg>
-            <span className={styles.btnLabel}>STAY IN SESSION</span>
-            <span className={styles.btnHelper}>Return to the current leaderboard</span>
+            <span className={styles.btnLabel}>{t("modals.close.btn_stay_label")}</span>
+            <span className={styles.btnHelper}>{t("modals.close.btn_stay_helper")}</span>
           </button>
 
           <button className={styles.btnExport} onClick={onExportAndClose} type="button">
@@ -151,8 +152,8 @@ export function CloseSessionModal({
               <path strokeLinejoin="round" d="M10 3v9m0 0l-3-3m3 3l3-3" />
               <path strokeLinejoin="round" d="M3 14v2a1 1 0 001 1h12a1 1 0 001-1v-2" />
             </svg>
-            <span className={styles.btnLabel}>EXPORT &amp; CLOSE</span>
-            <span className={styles.btnHelper}>Download JSON and return to start screen</span>
+            <span className={styles.btnLabel}>{t("modals.close.btn_export_label")}</span>
+            <span className={styles.btnHelper}>{t("modals.close.btn_export_helper")}</span>
           </button>
 
           <button className={styles.btnClose} onClick={onCloseWithoutSaving} type="button">
@@ -161,13 +162,13 @@ export function CloseSessionModal({
               <line x1="7" y1="7" x2="13" y2="13" />
               <line x1="13" y1="7" x2="7" y2="13" />
             </svg>
-            <span className={styles.btnLabel}>CLOSE WITHOUT SAVING</span>
-            <span className={styles.btnHelper}>Discard all current progress</span>
+            <span className={styles.btnLabel}>{t("modals.close.btn_close_label")}</span>
+            <span className={styles.btnHelper}>{t("modals.close.btn_close_helper")}</span>
           </button>
         </div>
 
         <p className={styles.footer}>
-          No data is stored automatically. Export is the only way to save your session.
+          {t("modals.close.footer")}
         </p>
       </div>
     </div>,

@@ -7,6 +7,7 @@
  * Accessibility: rendered as a real `role="tablist"` / `role="tab"` group with
  * `aria-selected` so screen readers announce the active tab correctly.
  */
+import { useTranslation } from "react-i18next";
 import styles from "./AppTabs.module.css";
 
 export type TabId = "leaderboard" | "setup" | "contact";
@@ -16,16 +17,18 @@ type Props = {
   onChange: (tab: TabId) => void;
 };
 
-const TABS: { id: TabId; label: string }[] = [
-  { id: "leaderboard", label: "LEADERBOARD" },
-  { id: "setup", label: "SETUP" },
-  { id: "contact", label: "SUPPORT" },
-];
-
 export function AppTabs({ active, onChange }: Props) {
+  const { t } = useTranslation();
+
+  const navTabs: { id: TabId; label: string }[] = [
+    { id: "leaderboard", label: t("leaderboard.title") },
+    { id: "setup", label: t("setup.title") },
+    { id: "contact", label: t("contact.title") },
+  ];
+
   return (
-    <div className={styles.tabBar} role="tablist" aria-label="Page sections">
-      {TABS.map((tab) => (
+    <div className={styles.tabBar} role="tablist" aria-label={t("common.page_sections")}>
+      {navTabs.map((tab) => (
         <button
           key={tab.id}
           role="tab"

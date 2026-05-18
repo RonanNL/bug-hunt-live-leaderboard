@@ -23,6 +23,7 @@
  * elapsed time metric card stays accurate while the facilitator adjusts the setup.
  */
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSession } from "../state/sessionStore";
 import { AppHeader } from "../components/layout/AppHeader";
 import { DashboardMetricCard } from "../components/leaderboard/DashboardMetricCard";
@@ -46,6 +47,7 @@ import type { BugHuntMode } from "../types/session";
 import styles from "./SetupPage.module.css";
 
 export function SetupPage() {
+  const { t } = useTranslation();
   const {
     session,
     navigateTo,
@@ -97,8 +99,8 @@ export function SetupPage() {
 
   const subtitle =
     session.mode === "individual"
-      ? "Configure your bug hunt before starting. Add participants and select the mode."
-      : "Configure your bug hunt before starting. Add participants, create teams and adjust settings.";
+      ? t("setup.subtitle_individual")
+      : t("setup.subtitle_team");
 
   return (
     <div className={styles.page}>
@@ -123,9 +125,9 @@ export function SetupPage() {
           }
         />
         <DashboardMetricCard
-          label="TOTAL BUGS FOUND"
+          label={t("leaderboard.metrics.bugs_found")}
           value={String(totalBugs)}
-          helperText={session.mode === "team" ? "Across all teams" : "Across all participants"}
+          helperText={session.mode === "team" ? t("leaderboard.metrics.bugs_across_teams") : t("leaderboard.metrics.bugs_across_participants")}
           iconBg="#fffbeb"
           icon={
             <svg viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="1.8">
@@ -135,7 +137,7 @@ export function SetupPage() {
           }
         />
         <DashboardMetricCard
-          label={leaderSummary.isMultiple ? "CURRENT LEADERS" : "CURRENT LEADER"}
+          label={leaderSummary.isMultiple ? t("leaderboard.leaders_title") : t("leaderboard.leader_title")}
           value={leaderSummary.label}
           helperText={leaderSummary.helperText}
           iconBg="#f0fdf4"
@@ -146,14 +148,14 @@ export function SetupPage() {
           }
         />
         <DashboardMetricCard
-          label="TIME ELAPSED"
+          label={t("leaderboard.metrics.time_elapsed")}
           value={formatTime(session.timer.elapsedSeconds)}
           helperText={
             session.timer.status === "not_started"
-              ? "Not started"
+              ? t("leaderboard.status_not_started")
               : session.timer.status === "running"
-              ? "Running"
-              : "Paused"
+              ? t("leaderboard.status_running")
+              : t("leaderboard.status_paused")
           }
           iconBg="#eff6ff"
           icon={
@@ -164,12 +166,12 @@ export function SetupPage() {
           }
         />
         <DashboardMetricCard
-          label="VISIBLE ENTRIES"
+          label={t("leaderboard.visible_entries")}
           value={getVisibilityLabel(session.visibilityMode)}
           helperText={
             session.visibilityMode === "all"
-              ? `Show all ${session.mode === "team" ? "teams" : "participants"}`
-              : `Showing ${getVisibilityLabel(session.visibilityMode)}`
+              ? session.mode === "team" ? t("leaderboard.show_all_teams") : t("leaderboard.show_all_participants")
+              : t("leaderboard.showing_label", { label: getVisibilityLabel(session.visibilityMode) })
           }
           iconBg="#f5f3ff"
           icon={
@@ -189,7 +191,7 @@ export function SetupPage() {
       <div className={styles.content}>
         <div className={styles.setupHeader}>
           <div>
-            <h2 className={styles.setupTitle}>SETUP</h2>
+            <h2 className={styles.setupTitle}>{t("setup.title")}</h2>
             <p className={styles.setupSubtitle}>{subtitle}</p>
           </div>
           <ModeSelector value={session.mode} onChange={handleModeChange} />
@@ -259,20 +261,20 @@ export function SetupPage() {
                 <path strokeLinecap="round" d="M4 10a6 6 0 1112 0 6 6 0 01-12 0z" />
                 <path strokeLinecap="round" d="M4 10V6M4 6H8" />
               </svg>
-              RESET SESSION
+              {t("setup.reset_session")}
             </button>
           ) : (
             <div className={styles.confirmRow}>
-              <span className={styles.confirmText}>This will clear all data. Continue?</span>
+              <span className={styles.confirmText}>{t("setup.confirm_reset")}</span>
               <button
                 className={styles.confirmYes}
                 onClick={() => { resetSessionData(); setShowResetConfirm(false); }}
                 type="button"
               >
-                Yes, reset
+                {t("setup.add_participants.yes_clear")}
               </button>
               <button className={styles.confirmNo} onClick={() => setShowResetConfirm(false)} type="button">
-                Cancel
+                {t("setup.add_participants.cancel")}
               </button>
             </div>
           )}
@@ -283,11 +285,11 @@ export function SetupPage() {
               className={styles.goBtn}
               onClick={() => {
                 if (session.mode === "individual" && session.participants.length === 0) {
-                  setSaveError("Add at least one participant before starting.");
+                  setSaveError(t("setup.error_no_participants"));
                   return;
                 }
                 if (session.mode === "team" && session.teams.length === 0) {
-                  setSaveError("Create at least one team before starting.");
+                  setSaveError(t("setup.error_no_teams"));
                   return;
                 }
                 setSaveError(null);
@@ -298,7 +300,7 @@ export function SetupPage() {
               <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true">
                 <path d="M6 4l10 6-10 6V4z" />
               </svg>
-              SAVE &amp; GO TO LEADERBOARD
+              {t("setup.save_go")}
             </button>
           </div>
         </div>
