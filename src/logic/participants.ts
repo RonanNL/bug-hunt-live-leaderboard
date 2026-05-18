@@ -26,6 +26,6 @@ export function generateId(): string {
 
 /** Preset names used by the "ADD DEMO DATA" shortcut on the Setup page. */
 export const DEMO_NAMES = [
-  "Ridha", "Roland", "Michael", "Max",
-  "Patrick", "Janina", "Sabrina", "Ronan",
+  "Patrick", "Max", "Nilay", "Roland",
+  "Ridha", "Nina", "Jason", "Tamara",
 ];
