@@ -614,10 +614,10 @@ const resources = {
         "tie_summary": "{{count}} gleichauf bei {{bugs}} Bugs"
       },
       "contact": {
-        "title": "SUPPORT",
+        "title": "HILFE",
         "subtitle": "Holen Sie sich Hilfe für explorative Sessions, das Hoster-Setup und die Bug-Hunt-Planung.",
         "form": {
-          "title": "SUPPORT ANFORDERN",
+          "title": "HILFE ANFORDERN",
           "name": "Vollständiger Name",
           "email": "E-Mail-Adresse",
           "company": "Unternehmen / Team",
@@ -627,7 +627,7 @@ const resources = {
           "send": "ANFRAGE SENDEN",
           "sending": "WIRD GESENDET...",
           "clear": "LÖSCHEN",
-          "success": "Vielen Dank! Ihre Support-Anfrage wurde erfolgreich gesendet.",
+          "success": "Vielen Dank! Ihre Hilfe-Anfrage wurde erfolgreich gesendet.",
           "error_name": "Vollständiger Name ist erforderlich.",
           "error_email": "E-Mail-Adresse ist erforderlich.",
           "error_email_invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
@@ -641,15 +641,15 @@ const resources = {
           "placeholder_message": "Beschreiben Sie Ihr Anliegen oder die benötigte Unterstützung..."
         },
         "details": {
-          "title": "SUPPORT-DETAILS",
-          "email_label": "Support-E-Mail",
+          "title": "HILFE-DETAILS",
+          "email_label": "Hilfe-E-Mail",
           "response_time_label": "Antwortzeit",
           "response_time_value": "Normalerweise innerhalb von 2 Werktagen",
           "availability_label": "Verfügbarkeit",
           "availability_value": "Mo–Fr"
         },
         "resources": {
-          "title": "SUPPORT-RESSOURCEN"
+          "title": "HILFE-RESSOURCEN"
         },
         "data_privacy": {
           "title": "DATEN & DATENSCHUTZ",
