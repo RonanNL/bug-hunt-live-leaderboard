@@ -87,13 +87,13 @@ export function LandingPage({ onStartNewSession, onImportSession }: Props) {
         </div>
 
         <h1 className={styles.title}>
-          BUG HUNT{" "}
-          <span className={styles.titleAccent}>LIVE LEADERBOARD</span>
+          LIVE{" "}
+          <span className={styles.titleAccent}>BUG HUNT</span>
         </h1>
 
         <hr className={styles.divider} aria-hidden="true" />
 
-        <p className={styles.subtitle}>Track bugs. Compete live. See who&apos;s leading.</p>
+        <p className={styles.subtitle}>A free gamified testing tool for live exploratory test sessions.<br />Create a session, project it on-screen, and motivate teams to find bugs together.</p>
       </header>
 
       <main className={styles.main}>
