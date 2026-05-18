@@ -6,7 +6,7 @@
  * clicking it programmatically, then immediately cleaning up. This approach works
  * in all modern browsers without requiring a backend.
  *
- * Filename format: bug-hunt-leaderboard-YYYY-MM-DD.json
+ * Filename format: bug-hunt-play-area-YYYY-MM-DD.json
  * The updatedAt timestamp is refreshed to the moment of export before serialising.
  *
  * No data is sent to any server — the file is saved directly to the user's device.
@@ -26,7 +26,7 @@ export function exportSessionAsJSON(session: BugHuntSession): void {
   const date = new Date().toISOString().split("T")[0];
   const a = document.createElement("a");
   a.href = url;
-  a.download = `bug-hunt-leaderboard-${date}.json`;
+  a.download = `bug-hunt-play-area-${date}.json`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);

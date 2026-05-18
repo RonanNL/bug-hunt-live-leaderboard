@@ -36,12 +36,12 @@ const resources = {
         "disclaimer_body_1": "This application is provided free of charge on an \"as is\" and \"as available\" basis, without warranties of any kind.",
         "disclaimer_body_2": "To the maximum extent permitted by law, the owner is not responsible for any direct, indirect, incidental, consequential, special, business, data-loss, or other damages arising from the use of, inability to use, malfunction, interruption, error, crash, depreciation, or unavailability of this application.",
         "disclaimer_body_3": "No bug hunt session data is automatically stored by this service. If session data is lost, unsaved, overwritten, corrupted, or unavailable, it cannot be recovered by the owner or the application.",
-        "disclaimer_body_4": "You are responsible for using the Bug Hunt Live Leaderboard appropriately, for complying with applicable laws and organizational policies, and for exporting any session data as JSON if you want to save or continue it later.",
+        "disclaimer_body_4": "You are responsible for using the Bug Hunt application appropriately, for complying with applicable laws and organizational policies, and for exporting any session data as JSON if you want to save or continue it later.",
         "disclaimer_body_5": "By continuing, you acknowledge that you use this application at your own risk and that you are responsible for the correct use of the application and for saving any data you want to keep.",
         "disclaimer_agree": "I acknowledge that I use this application at my own risk and that I am responsible for saving any data I want to keep.",
         "start_card": {
           "title": "START NEW BUG HUNT",
-          "desc": "Create a new leaderboard from scratch.",
+          "desc": "Create a new play area from scratch.",
           "feature_1": "Set up teams or participants",
           "feature_2": "Track bugs in real time",
           "feature_3": "Export your session as JSON",
@@ -71,7 +71,7 @@ const resources = {
         "subtitle_individual": "Configure your bug hunt before starting. Add participants and select the mode.",
         "subtitle_team": "Configure your bug hunt before starting. Add participants, create teams and adjust settings.",
         "reset_session": "RESET SESSION",
-        "save_go": "SAVE & GO TO LEADERBOARD",
+        "save_go": "SAVE & GO TO PLAY AREA",
         "error_no_participants": "Add at least one participant to continue.",
         "error_no_teams": "Create at least one team to continue.",
         "confirm_reset": "ARE YOU SURE? THIS WILL CLEAR EVERYTHING.",
@@ -128,7 +128,7 @@ const resources = {
           "manage_title": "4. MANAGE TEAMS",
           "manage_desc": "Review and edit teams. You can change team names and move participants between teams.",
           "add_member": "Add Member",
-          "no_teams": "Use \"AUTO-SHUFFLE TEAMS\" to create teams, or add teams manually.",
+          "no_teams": "Use \"AUTO-SHUFFLE TEAMS\" to create teams.",
           "members": "Members",
           "add_member_aria": "Add member to team",
           "remove_member_aria": "Remove member from team",
@@ -152,8 +152,8 @@ const resources = {
         }
       },
       "leaderboard": {
-        "title": "LIVE LEADERBOARD",
-        "header_title": "BUG HUNT LIVE LEADERBOARD",
+        "title": "PLAY AREA",
+        "header_title": "LIVE BUG HUNT",
         "privacy_line1": "No data is stored by this service.",
         "privacy_line2": "Download your JSON file to continue later.",
         "leaders_title": "CURRENT LEADERS",
@@ -200,7 +200,7 @@ const resources = {
           "export": "EXPORT SESSION",
           "close": "CLOSE SESSION"
         },
-        "empty": "No data to display yet. Start the timer and find some bugs!",
+        "empty": "No data to display yet.",
         "no_entries": "No entries yet",
         "no_entries_body": "Add participants in Setup before the hunt begins. Choose individual or team-based competition.",
         "setup_individual": "SETUP INDIVIDUAL BUG HUNT",
@@ -258,7 +258,7 @@ const resources = {
         },
         "data_privacy": {
           "title": "DATA & PRIVACY",
-          "text": "Bug Hunt Live Leaderboard does not automatically store bug hunt data on any server. JSON export/import is the only persistence mechanism available."
+          "text": "Live Bug Hunt does not automatically store bug hunt data on any server. JSON export/import is the only persistence mechanism available."
         },
         "links": {
           "title": "Helpful Links",
@@ -275,7 +275,7 @@ const resources = {
           "warning_subtext": "This application does not automatically store or recover session data.",
           "export_reminder": "To continue this bug hunt later, export the session as a JSON file before closing.",
           "btn_stay_label": "STAY IN SESSION",
-          "btn_stay_helper": "Return to the current leaderboard",
+          "btn_stay_helper": "Return to the current play area",
           "btn_export_label": "EXPORT & CLOSE",
           "btn_export_helper": "Download JSON and return to start screen",
           "btn_close_label": "CLOSE WITHOUT SAVING",
@@ -322,7 +322,7 @@ const resources = {
           "title": "User Guide",
           "subtitle": "Quick steps to set up and run your bug hunt session.",
           "tip_label": "Tip:",
-          "tip_text": "A new session starts empty. If no participants or teams exist yet, the Leaderboard will guide you back to Setup.",
+          "tip_text": "A new session starts empty. If no participants or teams exist yet, the Play Area will guide you back to Setup.",
           "footer_text": "Need more help? Please use the Send a Message form on this page",
           "steps": [
             {
@@ -334,8 +334,8 @@ const resources = {
               "text": "Enter participants. In Team-based mode, create or auto-shuffle teams and adjust names if needed."
             },
             {
-              "title": "Save & Go to Leaderboard",
-              "text": "Save your setup to populate the leaderboard. Existing rankings and unaffected scores stay intact when you make later setup changes."
+              "title": "Save & Go to Play Area",
+              "text": "Save your setup to populate the play area. Existing rankings and unaffected scores stay intact when you make later setup changes."
             },
             {
               "title": "Track Bugs Live",
@@ -343,7 +343,7 @@ const resources = {
             },
             {
               "title": "Use Timer & Visibility",
-              "text": "Start, pause, or end the timer. Filter the leaderboard by All, Top 3, or Top 10."
+              "text": "Start, pause, or end the timer. Filter the play area by All, Top 3, or Top 10."
             },
             {
               "title": "Export Before Closing",
@@ -431,12 +431,12 @@ const resources = {
         "disclaimer_body_1": "Diese Anwendung wird kostenlos auf einer \"wie besehen\" und \"wie verfügbar\" Basis bereitgestellt, ohne Gewährleistungen jeglicher Art.",
         "disclaimer_body_2": "Soweit gesetzlich zulässig, ist der Eigentümer nicht verantwortlich für direkte, indirekte, zufällige, Folgeschäden, spezielle, geschäftliche Schäden, Datenverlust oder andere Schäden, die aus der Nutzung, der Unfähigkeit zur Nutzung, Fehlfunktionen, Unterbrechungen, Fehlern, Abstürzen, Wertminderungen oder Nichtverfügbarkeit dieser Anwendung resultieren.",
         "disclaimer_body_3": "Es werden keine Bug-Hunt-Sitzungsdaten automatisch von diesem Dienst gespeichert. Wenn Sitzungsdaten verloren gehen, nicht gespeichert, überschrieben, beschädigt oder nicht verfügbar sind, können sie vom Eigentümer oder der Anwendung nicht wiederhergestellt werden.",
-        "disclaimer_body_4": "Sie sind verantwortlich für die angemessene Nutzung des Bug Hunt Live Leaderboards, für die Einhaltung geltender Gesetze und Organisationsrichtlinien sowie für den Export aller Sitzungsdaten als JSON, wenn Sie diese später speichern oder fortsetzen möchten.",
+        "disclaimer_body_4": "Sie sind verantwortlich für die angemessene Nutzung des Bug Hunt Applications, für die Einhaltung geltender Gesetze und Organisationsrichtlinien sowie für den Export aller Sitzungsdaten als JSON, wenn Sie diese später speichern oder fortsetzen möchten.",
         "disclaimer_body_5": "Durch Fortfahren bestätigen Sie, dass Sie diese Anwendung auf eigenes Risiko nutzen und dass Sie für die korrekte Nutzung der Anwendung und für das Speichern aller Daten, die Sie behalten möchten, verantwortlich sind.",
         "disclaimer_agree": "Ich bestätige, dass ich diese Anwendung auf eigenes Risiko nutze und dass ich für das Speichern aller Daten, die ich behalten möchte, verantwortlich bin.",
         "start_card": {
           "title": "NEUE BUG HUNT STARTEN",
-          "desc": "Erstellen Sie ein neues Leaderboard von Grund auf.",
+          "desc": "Erstellen Sie einen neuen Spielbereich von Grund auf.",
           "feature_1": "Teams oder Teilnehmer einrichten",
           "feature_2": "Bugs in Echtzeit verfolgen",
           "feature_3": "Session als JSON exportieren",
@@ -466,7 +466,7 @@ const resources = {
         "subtitle_individual": "Konfigurieren Sie Ihre Bug Hunt vor dem Start. Fügen Sie Teilnehmer hinzu und wählen Sie den Modus.",
         "subtitle_team": "Konfigurieren Sie Ihre Bug Hunt vor dem Start. Fügen Sie Teilnehmer hinzu, erstellen Sie Teams und passen Sie die Einstellungen an.",
         "reset_session": "SESSION ZURÜCKSETZEN",
-        "save_go": "SPEICHERN & ZUM LEADERBOARD",
+        "save_go": "SPEICHERN & ZUM SPIELBEREICH",
         "error_no_participants": "Fügen Sie mindestens einen Teilnehmer hinzu, um fortzufahren.",
         "error_no_teams": "Erstellen Sie mindestens ein Team, um fortzufahren.",
         "confirm_reset": "SIND SIE SICHER? DIES LÖSCHT ALLES.",
@@ -523,7 +523,7 @@ const resources = {
           "manage_title": "4. TEAMS VERWALTEN",
           "manage_desc": "Überprüfen und bearbeiten Sie die Teams. Sie können Teamnamen ändern und Teilnehmer zwischen Teams verschieben.",
           "add_member": "Mitglied hinzufügen",
-          "no_teams": "Nutzen Sie \"TEAMS AUTOMATISCH MISCHEN\", um Teams zu erstellen, oder fügen Sie Teams manuell hinzu.",
+          "no_teams": "Nutzen Sie \"TEAMS AUTOMATISCH MISCHEN\", um Teams zu erstellen.",
           "members": "Mitglieder",
           "add_member_aria": "Mitglied zu Team hinzufügen",
           "remove_member_aria": "Mitglied von Team entfernen",
@@ -547,8 +547,8 @@ const resources = {
         }
       },
       "leaderboard": {
-        "title": "LIVE LEADERBOARD",
-        "header_title": "BUG HUNT LIVE LEADERBOARD",
+        "title": "SPIELBEREICH",
+        "header_title": "LIVE BUG HUNT",
         "privacy_line1": "Es werden keine Daten von diesem Dienst gespeichert.",
         "privacy_line2": "Laden Sie Ihre JSON-Datei herunter, um später fortzufahren.",
         "leaders_title": "AKTUELLE FÜHRER",
@@ -595,7 +595,7 @@ const resources = {
           "export": "SESSION EXPORTIEREN",
           "close": "SESSION BEENDEN"
         },
-        "empty": "Noch keine Daten vorhanden. Starten Sie den Timer und finden Sie Bugs!",
+        "empty": "Noch keine Daten vorhanden.",
         "no_entries": "Noch keine Einträge",
         "no_entries_body": "Fügen Sie im Setup Teilnehmer hinzu, bevor die Jagd beginnt. Wählen Sie zwischen Einzel- oder Teamwettbewerb.",
         "setup_individual": "EINZEL-BUG-HUNT EINRICHTEN",
@@ -653,7 +653,7 @@ const resources = {
         },
         "data_privacy": {
           "title": "DATEN & DATENSCHUTZ",
-          "text": "Bug Hunt Live Leaderboard speichert Bug-Hunt-Daten nicht automatisch auf einem Server. Der JSON-Export/-Import ist der einzige verfügbare Mechanismus zur Datensicherung."
+          "text": "Live Bug Hunt speichert Bug-Hunt-Daten nicht automatisch auf einem Server. Der JSON-Export/-Import ist der einzige verfügbare Mechanismus zur Datensicherung."
         },
         "links": {
           "title": "Hilfreiche Links",
@@ -670,7 +670,7 @@ const resources = {
           "warning_subtext": "Diese Anwendung speichert oder stellt Sitzungsdaten nicht automatisch wieder her.",
           "export_reminder": "Um diese Bug Hunt später fortzusetzen, exportieren Sie die Sitzung vor dem Schließen als JSON-Datei.",
           "btn_stay_label": "IN SITZUNG BLEIBEN",
-          "btn_stay_helper": "Zurück zum aktuellen Leaderboard",
+          "btn_stay_helper": "Zurück zum aktuellen Spielbereich",
           "btn_export_label": "EXPORTIEREN & BEENDEN",
           "btn_export_helper": "JSON herunterladen und zum Startbildschirm zurückkehren",
           "btn_close_label": "OHNE SPEICHERN BEENDEN",
@@ -717,7 +717,7 @@ const resources = {
           "title": "Benutzerhandbuch",
           "subtitle": "Schnelle Schritte zum Einrichten und Durchführen Ihrer Bug-Hunt-Sitzung.",
           "tip_label": "Tipp:",
-          "tip_text": "Eine neue Sitzung startet leer. Wenn noch keine Teilnehmer oder Teams existieren, führt Sie das Leaderboard zurück zum Setup.",
+          "tip_text": "Eine neue Sitzung startet leer. Wenn noch keine Teilnehmer oder Teams existieren, führt Sie der Spielbereich zurück zum Setup.",
           "footer_text": "Benötigen Sie weitere Hilfe? Bitte nutzen Sie das Formular \"Nachricht senden\" auf dieser Seite.",
           "steps": [
             {
@@ -729,8 +729,8 @@ const resources = {
               "text": "Geben Sie die Teilnehmer ein. Erstellen oder mischen Sie im Team-Modus Teams und passen Sie die Namen bei Bedarf an."
             },
             {
-              "title": "Speichern & zum Leaderboard",
-              "text": "Speichern Sie Ihr Setup, um das Leaderboard zu füllen. Bestehende Rankings und nicht betroffene Scores bleiben bei späteren Setup-Änderungen erhalten."
+              "title": "Speichern & zum Spielbereich",
+              "text": "Speichern Sie Ihr Setup, um den Spielbereich zu füllen. Bestehende Rankings und nicht betroffene Scores bleiben bei späteren Setup-Änderungen erhalten."
             },
             {
               "title": "Bugs live verfolgen",
@@ -738,7 +738,7 @@ const resources = {
             },
             {
               "title": "Timer & Sichtbarkeit nutzen",
-              "text": "Starten, pausieren oder beenden Sie den Timer. Filtern Sie das Leaderboard nach Alle, Top 3 oder Top 10."
+              "text": "Starten, pausieren oder beenden Sie den Timer. Filtern Sie den Spielbereich nach Alle, Top 3 oder Top 10."
             },
             {
               "title": "Vor dem Schließen exportieren",

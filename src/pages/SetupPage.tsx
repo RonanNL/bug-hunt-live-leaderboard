@@ -16,7 +16,7 @@
  *
  * Bottom action row:
  *   - RESET SESSION — clears all participants, teams, and timer (with inline confirmation)
- *   - SAVE & GO TO LEADERBOARD — validates then navigates; shows an inline error if the
+ *   - SAVE & GO TO PLAY AREA — validates then navigates; shows an inline error if the
  *     session has no participants (individual) or no teams (team) yet
  *
  * The timer keeps ticking on this page (same useEffect as LeaderboardPage) so the
@@ -37,7 +37,6 @@ import { CloseSessionModal } from "../components/modals/CloseSessionModal";
 import { exportSessionAsJSON } from "../logic/exportSession";
 import {
   getRankedEntries,
-  getVisibilityLabel,
   getEntryLabel,
   getCurrentLeaderSummary,
 } from "../logic/ranking";
@@ -109,7 +108,7 @@ export function SetupPage() {
         onCloseSession={() => setShowCloseConfirm(true)}
       />
 
-      {/* Five summary metric cards — mirrors the Leaderboard page */}
+      {/* Four summary metric cards — mirrors the Play Area page */}
       <div className={styles.dashboardRow}>
         <DashboardMetricCard
           label={entryLabel.count}
@@ -162,22 +161,6 @@ export function SetupPage() {
             <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="1.8">
               <circle cx="12" cy="12" r="9" />
               <path strokeLinecap="round" d="M12 7v5l3 2" />
-            </svg>
-          }
-        />
-        <DashboardMetricCard
-          label={t("leaderboard.visible_entries")}
-          value={getVisibilityLabel(session.visibilityMode)}
-          helperText={
-            session.visibilityMode === "all"
-              ? session.mode === "team" ? t("leaderboard.show_all_teams") : t("leaderboard.show_all_participants")
-              : t("leaderboard.showing_label", { label: getVisibilityLabel(session.visibilityMode) })
-          }
-          iconBg="#f5f3ff"
-          icon={
-            <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="1.8">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z" />
-              <circle cx="12" cy="12" r="3" />
             </svg>
           }
         />

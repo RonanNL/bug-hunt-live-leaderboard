@@ -3,7 +3,7 @@
  *
  * Layout (top → bottom):
  *   1. AppHeader          — export + close session controls
- *   2. DashboardMetricCard row — five at-a-glance metrics
+ *   2. DashboardMetricCard row — four at-a-glance metrics
  *   3. AppTabs            — navigation between Leaderboard / Setup / Contact
  *   4. Section header     — title + visibility filter (when entries exist)
  *   5. Empty state panel  — shown when no participants/teams have been added yet
@@ -32,7 +32,6 @@ import {
   getRankedEntries,
   getMaxBugs,
   isEntryVisible,
-  getVisibilityLabel,
   getEntryLabel,
   getCurrentLeaderSummary,
 } from "../logic/ranking";
@@ -97,7 +96,7 @@ export function LeaderboardPage() {
         onCloseSession={() => setShowCloseConfirm(true)}
       />
 
-      {/* Five summary metric cards */}
+      {/* Four summary metric cards */}
       <div className={styles.dashboardRow}>
         <DashboardMetricCard
           label={entryLabel.count}
@@ -157,22 +156,6 @@ export function LeaderboardPage() {
           }
         />
 
-        <DashboardMetricCard
-          label={t("leaderboard.visible_entries")}
-          value={getVisibilityLabel(session.visibilityMode)}
-          helperText={
-            session.visibilityMode === "all"
-              ? session.mode === "team" ? t("leaderboard.show_all_teams") : t("leaderboard.show_all_participants")
-              : t("leaderboard.showing_label", { label: getVisibilityLabel(session.visibilityMode) })
-          }
-          iconBg="#f5f3ff"
-          icon={
-            <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="1.8">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z" />
-              <circle cx="12" cy="12" r="3" />
-            </svg>
-          }
-        />
       </div>
 
       <div className={styles.tabsWrapper}>
