@@ -1,9 +1,9 @@
 # Website-Zugriffsdaten
 
-Zugriff auf Ihre Website unter: https://livebughunt.com
-Zugriff auf Ihre Website mit www: https://www.livebughunt.com
-IP-Adresse der Website: 82.198.229.163
-Website-Vorschau ansehen unter: powderblue-gerbil-197610.hostingersite.com
+- **IZugriff auf Ihre Website unter: https://livebughunt.com
+- **IZugriff auf Ihre Website mit www: https://www.livebughunt.com
+- **IIP-Adresse der Website: 82.198.229.163
+- **IWebsite-Vorschau ansehen unter: powderblue-gerbil-197610.hostingersite.com
 
 # Bug Hunt Live Leaderboard
 
