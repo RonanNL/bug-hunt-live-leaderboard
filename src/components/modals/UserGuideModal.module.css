@@ -43,21 +43,15 @@
 
 /* Scrollable content area */
 .scrollBody {
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-md);
   padding: var(--space-sm) var(--space-xl) var(--space-lg);
-  scrollbar-width: thin;
-  scrollbar-color: #e5e7eb #f9fafb;
 }
-
-.scrollBody::-webkit-scrollbar { width: 6px; }
-.scrollBody::-webkit-scrollbar-track { background: #f9fafb; border-radius: 3px; }
-.scrollBody::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 3px; }
 
 @keyframes modalIn {
   from { opacity: 0; transform: scale(0.94) translateY(8px); }
@@ -122,6 +116,22 @@
   overflow: hidden;
   margin-top: var(--space-sm);
 }
+
+.stepsScroll {
+  width: 100%;
+  max-height: min(48vh, 460px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 4px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #f3f4f6;
+}
+
+.stepsScroll::-webkit-scrollbar { width: 8px; }
+.stepsScroll::-webkit-scrollbar-track { background: #f3f4f6; border-radius: 8px; }
+.stepsScroll::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 8px; }
+.stepsScroll::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
 
 .stepRow {
   display: flex;

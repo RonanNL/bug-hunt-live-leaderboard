@@ -134,30 +134,32 @@ export function BugHuntSetupTipsModal({ isOpen, onClose }: Props) {
             Short guidance for planning and running an effective exploratory bug hunt.
           </p>
 
-          <ol className={styles.tipList} aria-label="Setup tips">
-            {TIPS.map((tip, i) => (
-              <li key={i} className={styles.tipRow}>
-                <span className={styles.badge} aria-hidden="true">{i + 1}</span>
-                <div className={styles.tipBody}>
-                  <p className={styles.tipTitle}>{tip.title}</p>
-                  <p className={styles.tipText}>{tip.text}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-
-          <div className={styles.infoBox} role="note">
-            <svg viewBox="0 0 20 20" fill="none" width="18" height="18" style={{ flexShrink: 0 }} aria-hidden="true">
-              <circle cx="10" cy="8" r="5" stroke="#d97706" strokeWidth="1.6" />
-              <path strokeLinecap="round" d="M8 13.5c0 1 4 1 4 0" stroke="#d97706" strokeWidth="1.4" />
-              <path strokeLinecap="round" d="M10 11v2" stroke="#d97706" strokeWidth="1.6" />
-            </svg>
-            <p className={styles.infoText}>
-              Bug hunts can be expensive because they involve many people. However, when done right,
-              the return on investment can be significant because product quality is assessed by many
-              people in a short timeframe.
-            </p>
+          <div className={styles.tipsScroll}>
+            <ol className={styles.tipList} aria-label="Setup tips">
+              {TIPS.map((tip, i) => (
+                <li key={i} className={styles.tipRow}>
+                  <span className={styles.badge} aria-hidden="true">{i + 1}</span>
+                  <div className={styles.tipBody}>
+                    <p className={styles.tipTitle}>{tip.title}</p>
+                    <p className={styles.tipText}>{tip.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
           </div>
+
+          {/*<div className={styles.infoBox} role="note">*/}
+          {/*  <svg viewBox="0 0 20 20" fill="none" width="18" height="18" style={{ flexShrink: 0 }} aria-hidden="true">*/}
+          {/*    <circle cx="10" cy="8" r="5" stroke="#d97706" strokeWidth="1.6" />*/}
+          {/*    <path strokeLinecap="round" d="M8 13.5c0 1 4 1 4 0" stroke="#d97706" strokeWidth="1.4" />*/}
+          {/*    <path strokeLinecap="round" d="M10 11v2" stroke="#d97706" strokeWidth="1.6" />*/}
+          {/*  </svg>*/}
+          {/*  <p className={styles.infoText}>*/}
+          {/*    Bug hunts can be expensive because they involve many people. However, when done right,*/}
+          {/*    the return on investment can be significant because product quality is assessed by many*/}
+          {/*    people in a short timeframe.*/}
+          {/*  </p>*/}
+          {/*</div>*/}
 
           <div className={styles.footer}>
             <p className={styles.footerText}>

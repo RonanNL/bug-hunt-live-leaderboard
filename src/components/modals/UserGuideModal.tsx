@@ -119,17 +119,19 @@ export function UserGuideModal({ isOpen, onClose }: Props) {
           <h2 id="ug-title" className={styles.title}>User Guide</h2>
           <p id="ug-subtitle" className={styles.subtitle}>Quick steps to set up and run your bug hunt session.</p>
 
-          <ol className={styles.stepList} aria-label="Guide steps">
-            {STEPS.map((step, i) => (
-              <li key={i} className={styles.stepRow}>
-                <span className={styles.badge} aria-hidden="true">{i + 1}</span>
-                <div className={styles.stepBody}>
-                  <p className={styles.stepTitle}>{step.title}</p>
-                  <p className={styles.stepText}>{step.text}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+          <div className={styles.stepsScroll}>
+            <ol className={styles.stepList} aria-label="Guide steps">
+              {STEPS.map((step, i) => (
+                <li key={i} className={styles.stepRow}>
+                  <span className={styles.badge} aria-hidden="true">{i + 1}</span>
+                  <div className={styles.stepBody}>
+                    <p className={styles.stepTitle}>{step.title}</p>
+                    <p className={styles.stepText}>{step.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
 
           <div className={styles.tip} role="note">
             <svg viewBox="0 0 20 20" fill="none" width="18" height="18" style={{ flexShrink: 0 }} aria-hidden="true">

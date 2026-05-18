@@ -134,21 +134,23 @@ export function PrivacyNoticeModal({ isOpen, onClose }: Props) {
             Your privacy is important. This application is designed with privacy by design.
           </p>
 
-          <div className={styles.sectionList} aria-label="Privacy sections">
-            {SECTIONS.map((section, i) => (
-              <div key={i} className={styles.sectionRow}>
-                <span className={styles.sectionIcon} aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="1.8" width="20" height="20">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l7 3v5c0 5.5-3.2 9.5-7 10.5C8.2 19.5 5 15.5 5 10V5l7-3z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
-                  </svg>
-                </span>
-                <div className={styles.sectionBody}>
-                  <p className={styles.sectionTitle}>{section.title}</p>
-                  <p className={styles.sectionText}>{section.text}</p>
+          <div className={styles.sectionsScroll}>
+            <div className={styles.sectionList} aria-label="Privacy sections">
+              {SECTIONS.map((section, i) => (
+                <div key={i} className={styles.sectionRow}>
+                  <span className={styles.sectionIcon} aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="1.8" width="20" height="20">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l7 3v5c0 5.5-3.2 9.5-7 10.5C8.2 19.5 5 15.5 5 10V5l7-3z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
+                    </svg>
+                  </span>
+                  <div className={styles.sectionBody}>
+                    <p className={styles.sectionTitle}>{section.title}</p>
+                    <p className={styles.sectionText}>{section.text}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           <div className={styles.infoBox} role="note">

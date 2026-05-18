@@ -129,8 +129,10 @@ export function ContactPage() {
       </div>
 
       <div className={styles.heading}>
-        <h2 className={styles.headingTitle}>CONTACT &amp; SUPPORT</h2>
-        <p className={styles.headingSubtitle}>Questions, feedback, or support requests? Get in touch.</p>
+        <h2 className={styles.headingTitle}>SUPPORT</h2>
+        <p className={styles.headingSubtitle}>
+          Get help for exploratory sessions, hoster setup, and bug hunt planning.
+        </p>
       </div>
 
       {/* Two-column content: form left, sidebar right */}
@@ -138,7 +140,7 @@ export function ContactPage() {
 
         {/* ── LEFT: contact form card ───────────────────────────────────── */}
         <div className={styles.formCard}>
-          <h3 className={styles.cardTitle}>SEND A MESSAGE</h3>
+          <h3 className={styles.cardTitle}>REQUEST SUPPORT</h3>
 
           <div className={styles.formGrid}>
             <label className={styles.label} htmlFor="cf-name">
@@ -196,7 +198,7 @@ export function ContactPage() {
                 id="cf-subject"
                 className={`${styles.input} ${errors.subject ? styles.inputErr : ""}`}
                 type="text"
-                placeholder="What is your message about?"
+                placeholder="What do you need help with?"
                 value={form.subject}
                 onChange={update("subject")}
               />
@@ -210,7 +212,7 @@ export function ContactPage() {
               <textarea
                 id="cf-message"
                 className={`${styles.textarea} ${errors.message ? styles.inputErr : ""}`}
-                placeholder="Type your message here..."
+                placeholder="Describe your issue or the setup support you need..."
                 value={form.message}
                 onChange={update("message")}
                 rows={6}
@@ -224,7 +226,7 @@ export function ContactPage() {
               <svg viewBox="0 0 20 20" fill="none" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" width="16" height="16" aria-hidden="true">
                 <polyline points="3,10 8,15 17,5" strokeLinejoin="round" />
               </svg>
-              Thank you! Your message has been sent successfully.
+              Thank you! Your support request has been sent successfully.
             </div>
           )}
 
@@ -249,7 +251,7 @@ export function ContactPage() {
               <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="16" height="16" aria-hidden="true">
                 <path d="M17 3L2 9l5.5 2.5L10 17l2-5.5L17 3z" />
               </svg>
-              {isSending ? "SENDING..." : "SEND MESSAGE"}
+              {isSending ? "SENDING..." : "SEND REQUEST"}
             </button>
             <button className={styles.clearBtn} onClick={handleClear} type="button">
               <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" width="16" height="16" aria-hidden="true">
@@ -264,9 +266,9 @@ export function ContactPage() {
         {/* ── RIGHT: sidebar cards ───────────────────────────────────── */}
         <div className={styles.sidebar}>
 
-          {/* Contact Details */}
+          {/* Support Details */}
           <div className={styles.sideCard}>
-            <h3 className={styles.sideCardTitle}>CONTACT DETAILS</h3>
+            <h3 className={styles.sideCardTitle}>SUPPORT DETAILS</h3>
             <div className={styles.detailRow}>
               <span className={styles.detailIcon}>
                 <svg viewBox="0 0 20 20" fill="none" stroke="#d97706" strokeWidth="1.6" width="18" height="18">
@@ -275,7 +277,7 @@ export function ContactPage() {
                 </svg>
               </span>
               <div>
-                <p className={styles.detailLabel}>Email</p>
+                <p className={styles.detailLabel}>Support Email</p>
                 <p className={styles.detailValue}>{CONTACT_EMAIL}</p>
               </div>
             </div>
@@ -309,7 +311,7 @@ export function ContactPage() {
 
           {/* Helpful Links — open modal overlays */}
           <div className={styles.sideCard}>
-            <h3 className={styles.sideCardTitle}>HELPFUL LINKS</h3>
+            <h3 className={styles.sideCardTitle}>SUPPORT RESOURCES</h3>
             <div className={styles.linkList}>
               <button className={styles.linkRow} type="button" aria-label="User Guide" onClick={() => setShowUserGuide(true)}>
                 <svg viewBox="0 0 20 20" fill="none" stroke="#374151" strokeWidth="1.6" width="16" height="16" aria-hidden="true">

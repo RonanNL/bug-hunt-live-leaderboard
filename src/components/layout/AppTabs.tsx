@@ -19,7 +19,7 @@ type Props = {
 const TABS: { id: TabId; label: string }[] = [
   { id: "leaderboard", label: "LEADERBOARD" },
   { id: "setup", label: "SETUP" },
-  { id: "contact", label: "CONTACT" },
+  { id: "contact", label: "SUPPORT" },
 ];
 
 export function AppTabs({ active, onChange }: Props) {

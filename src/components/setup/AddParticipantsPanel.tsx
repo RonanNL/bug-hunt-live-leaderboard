@@ -56,7 +56,7 @@ export function AddParticipantsPanel({ onAdd, onClearAll, onAddDemo }: Props) {
         value={text}
         onChange={(e) => setText(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder={"Ridha\nRoland\nMichael"}
+        placeholder={"Elias, Linus, ...\nNelio"}
         aria-label="Participant names"
         rows={8}
       />
