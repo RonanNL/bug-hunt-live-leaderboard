@@ -11,6 +11,13 @@
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
+@media (max-width: 900px) and (orientation: portrait) {
+  .card {
+    width: 100%;
+    flex-shrink: 1;
+  }
+}
+
 .card:hover {
   box-shadow: 0 2px 8px rgba(0,0,0,0.07);
 }

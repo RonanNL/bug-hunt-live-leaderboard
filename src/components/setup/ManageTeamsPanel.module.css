@@ -74,6 +74,26 @@
   padding-bottom: 4px;
 }
 
+@media (max-width: 900px) and (orientation: portrait) {
+  .scrollWrapper {
+    overflow-x: visible;
+    overflow-y: visible;
+    padding-bottom: 0;
+    scrollbar-width: auto;
+  }
+
+  .scrollWrapper::-webkit-scrollbar {
+    height: 0;
+  }
+
+  .teamsRow {
+    flex-direction: column;
+    min-width: 0;
+    width: 100%;
+    padding-bottom: 0;
+  }
+}
+
 .dragHint {
   display: flex;
   align-items: center;
