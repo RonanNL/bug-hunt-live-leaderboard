@@ -8,6 +8,7 @@
  */
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { useTranslation } from "react-i18next";
 import styles from "./UserGuideModal.module.css";
 
 type Props = {
@@ -15,35 +16,11 @@ type Props = {
   onClose: () => void;
 };
 
-const STEPS = [
-  {
-    title: "Choose a Mode",
-    text: "Open the Setup page and choose Individual or Team-based mode.",
-  },
-  {
-    title: "Add Participants",
-    text: "Enter participants. In Team-based mode, create or auto-shuffle teams and adjust names if needed.",
-  },
-  {
-    title: "Save & Go to Leaderboard",
-    text: "Save your setup to populate the leaderboard. Existing rankings and unaffected scores stay intact when you make later setup changes.",
-  },
-  {
-    title: "Track Bugs Live",
-    text: "Use the + and − controls to add or subtract bugs. Tied scores share the same rank.",
-  },
-  {
-    title: "Use Timer & Visibility",
-    text: "Start, pause, or end the timer. Filter the leaderboard by All, Top 3, or Top 10.",
-  },
-  {
-    title: "Export Before Closing",
-    text: "No data is stored automatically. Export your session as JSON if you want to continue later.",
-  },
-];
-
 export function UserGuideModal({ isOpen, onClose }: Props) {
+  const { t } = useTranslation();
   const dialogRef = useRef<HTMLDivElement>(null);
+
+  const steps = t("modals.guide.steps", { returnObjects: true }) as { title: string; text: string }[];
 
   useEffect(() => {
     if (!isOpen) return;
@@ -98,7 +75,7 @@ export function UserGuideModal({ isOpen, onClose }: Props) {
       >
         {/* Non-scrolling header: X button only */}
         <div className={styles.modalHeader}>
-          <button className={styles.xBtn} onClick={onClose} type="button" aria-label="Close User Guide">
+          <button className={styles.xBtn} onClick={onClose} type="button" aria-label={t("common.cancel")}>
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" width="14" height="14">
               <line x1="2" y1="2" x2="14" y2="14" />
               <line x1="14" y1="2" x2="2" y2="14" />
@@ -116,12 +93,12 @@ export function UserGuideModal({ isOpen, onClose }: Props) {
             </svg>
           </div>
 
-          <h2 id="ug-title" className={styles.title}>User Guide</h2>
-          <p id="ug-subtitle" className={styles.subtitle}>Quick steps to set up and run your bug hunt session.</p>
+          <h2 id="ug-title" className={styles.title}>{t("modals.guide.title")}</h2>
+          <p id="ug-subtitle" className={styles.subtitle}>{t("modals.guide.subtitle")}</p>
 
           <div className={styles.stepsScroll}>
             <ol className={styles.stepList} aria-label="Guide steps">
-              {STEPS.map((step, i) => (
+              {steps.map((step, i) => (
                 <li key={i} className={styles.stepRow}>
                   <span className={styles.badge} aria-hidden="true">{i + 1}</span>
                   <div className={styles.stepBody}>
@@ -140,17 +117,16 @@ export function UserGuideModal({ isOpen, onClose }: Props) {
               <path strokeLinecap="round" d="M10 11v2" stroke="#d97706" strokeWidth="1.6" />
             </svg>
             <p className={styles.tipText}>
-              <strong>Tip:</strong> A new session starts empty. If no participants or teams exist yet,
-              the Leaderboard will guide you back to Setup.
+              <strong>{t("modals.guide.tip_label")}</strong> {t("modals.guide.tip_text")}
             </p>
           </div>
 
           <div className={styles.footer}>
             <p className={styles.footerText}>
-              Need more help? Please use the Send a Message form on this page
+              {t("modals.guide.footer_text")}
             </p>
             <button className={styles.closeBtn} onClick={onClose} type="button">
-              Close
+              {t("common.cancel")}
             </button>
           </div>
         </div>

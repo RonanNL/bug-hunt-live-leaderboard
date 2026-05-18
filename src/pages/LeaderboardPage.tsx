@@ -18,6 +18,7 @@
  * in logic/ranking.ts. Scores and ranks update immediately on every + / − click.
  */
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSession } from "../state/sessionStore";
 import { AppHeader } from "../components/layout/AppHeader";
 import { DashboardMetricCard } from "../components/leaderboard/DashboardMetricCard";
@@ -40,6 +41,7 @@ import type { VisibilityMode } from "../types/session";
 import styles from "./LeaderboardPage.module.css";
 
 export function LeaderboardPage() {
+  const { t } = useTranslation();
   const {
     session,
     clearSession,
@@ -68,7 +70,7 @@ export function LeaderboardPage() {
   if (!session) {
     return (
       <div className={styles.page}>
-        <p style={{ padding: "2rem", color: "#6b7280" }}>No active session.</p>
+        <p style={{ padding: "2rem", color: "#6b7280" }}>{t("leaderboard.empty")}</p>
       </div>
     );
   }
@@ -112,9 +114,9 @@ export function LeaderboardPage() {
         />
 
         <DashboardMetricCard
-          label="TOTAL BUGS FOUND"
+          label={t("leaderboard.metrics.bugs_found")}
           value={String(totalBugs)}
-          helperText={session.mode === "team" ? "Across all teams" : "Across all participants"}
+          helperText={session.mode === "team" ? t("leaderboard.metrics.bugs_across_teams") : t("leaderboard.metrics.bugs_across_participants")}
           iconBg="#fffbeb"
           icon={
             <svg viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="1.8">
@@ -125,7 +127,7 @@ export function LeaderboardPage() {
         />
 
         <DashboardMetricCard
-          label={leaderSummary.isMultiple ? "CURRENT LEADERS" : "CURRENT LEADER"}
+          label={leaderSummary.isMultiple ? t("leaderboard.leaders_title") : t("leaderboard.leader_title")}
           value={leaderSummary.label}
           helperText={leaderSummary.helperText}
           iconBg="#f0fdf4"
@@ -137,14 +139,14 @@ export function LeaderboardPage() {
         />
 
         <DashboardMetricCard
-          label="TIME ELAPSED"
+          label={t("leaderboard.metrics.time_elapsed")}
           value={formatTime(session.timer.elapsedSeconds)}
           helperText={
             session.timer.status === "not_started"
-              ? "Not started"
+              ? t("leaderboard.status_not_started")
               : session.timer.status === "running"
-              ? "Running"
-              : "Paused"
+              ? t("leaderboard.status_running")
+              : t("leaderboard.status_paused")
           }
           iconBg="#eff6ff"
           icon={
@@ -156,12 +158,12 @@ export function LeaderboardPage() {
         />
 
         <DashboardMetricCard
-          label="VISIBLE ENTRIES"
+          label={t("leaderboard.visible_entries")}
           value={getVisibilityLabel(session.visibilityMode)}
           helperText={
             session.visibilityMode === "all"
-              ? `Show all ${session.mode === "team" ? "teams" : "participants"}`
-              : `Showing ${getVisibilityLabel(session.visibilityMode)}`
+              ? session.mode === "team" ? t("leaderboard.show_all_teams") : t("leaderboard.show_all_participants")
+              : t("leaderboard.showing_label", { label: getVisibilityLabel(session.visibilityMode) })
           }
           iconBg="#f5f3ff"
           icon={
@@ -181,16 +183,14 @@ export function LeaderboardPage() {
         <div className={styles.content}>
           <div className={styles.sectionHeader}>
             <div className={styles.sectionMeta}>
-              <h2 className={styles.sectionTitle}>LIVE LEADERBOARD</h2>
+              <h2 className={styles.sectionTitle}>{t("leaderboard.title")}</h2>
               <p className={styles.sectionHelper}>
-                {hasEntries
-                  ? "Use + to add bugs, − to subtract. Rankings update automatically."
-                  : "No participants yet. Go to Setup to add participants."}
+                {hasEntries ? t("leaderboard.helper_has_entries") : t("leaderboard.helper_no_entries")}
               </p>
             </div>
             {hasEntries && (
               <div className={styles.visibilityRow}>
-                <span className={styles.visibilityLabel}>Visibility</span>
+                <span className={styles.visibilityLabel}>{t("leaderboard.visibility_label")}</span>
                 <VisibilitySelector
                   value={session.visibilityMode}
                   onChange={handleVisibilityChange}
@@ -209,9 +209,9 @@ export function LeaderboardPage() {
                 </svg>
               </div>
               <div>
-                <h3 className={styles.emptyTitle}>No entries yet</h3>
+                <h3 className={styles.emptyTitle}>{t("leaderboard.no_entries")}</h3>
                 <p className={styles.emptyBody}>
-                  Add participants in Setup before the hunt begins. Choose individual or team-based competition.
+                  {t("leaderboard.no_entries_body")}
                 </p>
               </div>
               <div className={styles.emptyActions}>
@@ -223,7 +223,7 @@ export function LeaderboardPage() {
                   <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true">
                     <path d="M6 4l10 6-10 6V4z" />
                   </svg>
-                  SETUP INDIVIDUAL BUG HUNT
+                  {t("leaderboard.setup_individual")}
                 </button>
                 <button
                   className={styles.emptyBtnSecondary}
@@ -234,7 +234,7 @@ export function LeaderboardPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13 6H7a2 2 0 00-2 2v4a2 2 0 002 2h6a2 2 0 002-2V8a2 2 0 00-2-2z" />
                     <path strokeLinecap="round" d="M10 2v2M10 16v2M4 10H2M18 10h-2" />
                   </svg>
-                  SETUP TEAM-BASED BUG HUNT
+                  {t("leaderboard.setup_team")}
                 </button>
               </div>
             </div>

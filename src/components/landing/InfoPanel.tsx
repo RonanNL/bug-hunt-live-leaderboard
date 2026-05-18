@@ -1,6 +1,9 @@
+import { useTranslation } from "react-i18next";
 import styles from "./InfoPanel.module.css";
 
 export function InfoPanel() {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.panel}>
       <div className={styles.shieldIcon} aria-hidden="true">
@@ -28,15 +31,10 @@ export function InfoPanel() {
       </div>
 
       <div className={styles.content}>
-        <h3 className={styles.title}>YOUR DATA STAYS WITH YOU</h3>
-        <p className={styles.body}>No bug hunt data is stored by this service.</p>
-        <p className={styles.body}>
-          To continue later, export your session as a JSON file and import it again when you
-          return.
-        </p>
-        <p className={styles.body}>
-          Keep your JSON file safe — it is the only way to restore your session.
-        </p>
+        <h3 className={styles.title}>{t("landing.privacy_title")}</h3>
+        <p className={styles.body}>{t("landing.privacy_desc")}</p>
+        <p className={styles.body}>{t("landing.privacy_desc_2")}</p>
+        <p className={styles.body}>{t("landing.privacy_desc_3")}</p>
       </div>
     </div>
   );

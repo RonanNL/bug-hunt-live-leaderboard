@@ -13,6 +13,7 @@
  *   so the display order is stable and predictable within a rank.
  */
 import type { BugHuntSession, BugHuntMode, VisibilityMode } from "../types/session";
+import i18n from "../i18n";
 
 /** A participant or team enriched with its computed rank. */
 export type RankedEntry = {
@@ -83,16 +84,16 @@ export function isEntryVisible(rank: number, mode: VisibilityMode): boolean {
 
 /** Human-readable label for the current visibility mode setting. */
 export function getVisibilityLabel(mode: VisibilityMode): string {
-  if (mode === "top3") return "Top 3";
-  if (mode === "top10") return "Top 10";
-  return "All";
+  if (mode === "top3") return i18n.t("leaderboard.visibility.top3");
+  if (mode === "top10") return i18n.t("leaderboard.visibility.top10");
+  return i18n.t("leaderboard.visibility.all");
 }
 
 /** Returns the metric card labels appropriate for the current competition mode. */
 export function getEntryLabel(mode: BugHuntMode): { count: string; helper: string } {
   return mode === "team"
-    ? { count: "TOTAL TEAMS", helper: "Teams participating" }
-    : { count: "TOTAL PARTICIPANTS", helper: "Participants added" };
+    ? { count: i18n.t("setup.review.teams_label"), helper: i18n.t("setup.review.teams_label") }
+    : { count: i18n.t("setup.review.participants_label"), helper: i18n.t("setup.review.participants_label") };
 }
 
 /**
@@ -105,21 +106,21 @@ export function getCurrentLeaderSummary(ranked: RankedEntry[]): LeaderSummary {
   const leaders = ranked.filter((e) => e.rank === 1 && e.bugsFound > 0);
 
   if (leaders.length === 0) {
-    return { label: "—", helperText: "No bugs found yet", isMultiple: false };
+    return { label: "—", helperText: i18n.t("leaderboard.empty"), isMultiple: false };
   }
 
   if (leaders.length === 1) {
     const l = leaders[0];
     return {
       label: l.name,
-      helperText: `${l.bugsFound} bug${l.bugsFound !== 1 ? "s" : ""}`,
+      helperText: i18n.t("leaderboard.bug_count", { count: l.bugsFound }),
       isMultiple: false,
     };
   }
 
   return {
-    label: "Multiple Leaders",
-    helperText: `${leaders.length} tied at ${leaders[0].bugsFound} bug${leaders[0].bugsFound !== 1 ? "s" : ""}`,
+    label: i18n.t("leaderboard.multiple_leaders"),
+    helperText: i18n.t("leaderboard.tie_summary", { count: leaders.length, bugs: leaders[0].bugsFound }),
     isMultiple: true,
   };
 }

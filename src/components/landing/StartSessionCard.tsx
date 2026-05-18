@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import styles from "./StartSessionCard.module.css";
 
 type Props = {
@@ -28,6 +29,8 @@ function CheckItem({ text }: { text: string }) {
 }
 
 export function StartSessionCard({ onStartNewSession }: Props) {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.card}>
       <div className={styles.iconCircle} aria-hidden="true">
@@ -51,16 +54,16 @@ export function StartSessionCard({ onStartNewSession }: Props) {
       </div>
 
       <div className={styles.textHeader}>
-        <h2 className={styles.title}>START NEW BUG HUNT</h2>
-        <p className={styles.description}>Create a new leaderboard from scratch.</p>
+        <h2 className={styles.title}>{t("landing.start_card.title")}</h2>
+        <p className={styles.description}>{t("landing.start_card.desc")}</p>
       </div>
 
       <hr className={styles.divider} aria-hidden="true" />
 
       <ul className={styles.features}>
-        <CheckItem text="Set up teams or participants" />
-        <CheckItem text="Track bugs in real time" />
-        <CheckItem text="Export your session as JSON" />
+        <CheckItem text={t("landing.start_card.feature_1")} />
+        <CheckItem text={t("landing.start_card.feature_2")} />
+        <CheckItem text={t("landing.start_card.feature_3")} />
       </ul>
 
       <button
@@ -68,7 +71,7 @@ export function StartSessionCard({ onStartNewSession }: Props) {
         onClick={onStartNewSession}
         type="button"
       >
-        START NEW SESSION
+        {t("landing.start_card.button")}
       </button>
     </div>
   );

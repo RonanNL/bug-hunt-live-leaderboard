@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import styles from "./FileDropzone.module.css";
 
 type Props = {
@@ -6,6 +7,7 @@ type Props = {
 };
 
 export function FileDropzone({ onFile }: Props) {
+  const { t } = useTranslation();
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -51,7 +53,7 @@ export function FileDropzone({ onFile }: Props) {
       onKeyDown={handleKeyDown}
       role="button"
       tabIndex={0}
-      aria-label="Click or drag and drop a JSON file here"
+      aria-label={t("landing.import_card.dropzone.idle")}
     >
       <input
         ref={inputRef}
@@ -78,9 +80,11 @@ export function FileDropzone({ onFile }: Props) {
 
       <div className={styles.textGroup}>
         <p className={styles.primaryText}>
-          {isDragging ? "Drop your JSON file here" : "Click to select JSON file"}
+          {isDragging
+            ? t("landing.import_card.dropzone.active")
+            : t("landing.import_card.dropzone.click")}
         </p>
-        <p className={styles.secondaryText}>or drag and drop here</p>
+        <p className={styles.secondaryText}>{t("landing.import_card.dropzone.or_drag")}</p>
       </div>
     </div>
   );

@@ -10,6 +10,7 @@
  * via the addMemberToTeam action in sessionStore (which filters the old team's memberIds).
  */
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import type { Team, Participant } from "../../types/session";
 import { TeamEditCard } from "./TeamEditCard";
 import styles from "./ManageTeamsPanel.module.css";
@@ -33,6 +34,7 @@ export function ManageTeamsPanel({
   onAddMember,
   onDeleteTeam,
 }: Props) {
+  const { t } = useTranslation();
   const [drag, setDrag] = useState<DragState>(null);
 
   const handleDragStart = (participantId: string, fromTeamId: string) => {
@@ -51,16 +53,16 @@ export function ManageTeamsPanel({
     <div className={styles.panel}>
       <div className={styles.header}>
         <div>
-          <h3 className={styles.title}>4. MANAGE TEAMS ({teams.length})</h3>
+          <h3 className={styles.title}>{t("setup.teams.manage_title")} ({teams.length})</h3>
           <p className={styles.helper}>
-            Review and edit teams. You can change team names and move participants between teams.
+            {t("setup.teams.manage_desc")}
           </p>
         </div>
       </div>
 
       {teams.length === 0 ? (
         <p className={styles.empty}>
-          Use "AUTO-SHUFFLE TEAMS" to create teams, or add teams manually.
+          {t("setup.teams.no_teams")}
         </p>
       ) : (
         <>
@@ -87,7 +89,7 @@ export function ManageTeamsPanel({
               <circle cx="8" cy="8" r="6" />
               <path strokeLinecap="round" d="M8 7v3M8 5.5v.5" />
             </svg>
-            <span>Drag and drop participants to move them between teams.</span>
+            <span>{t("setup.teams.drag_hint")}</span>
           </div>
         </>
       )}

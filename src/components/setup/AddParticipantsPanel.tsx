@@ -13,6 +13,7 @@
  * Ctrl/Cmd + Enter submits the textarea without clicking the button.
  */
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { parseNames, DEMO_NAMES } from "../../logic/participants";
 import styles from "./AddParticipantsPanel.module.css";
 
@@ -23,6 +24,7 @@ type Props = {
 };
 
 export function AddParticipantsPanel({ onAdd, onClearAll, onAddDemo }: Props) {
+  const { t } = useTranslation();
   const [text, setText] = useState("");
   const [showConfirm, setShowConfirm] = useState(false);
 
@@ -48,15 +50,15 @@ export function AddParticipantsPanel({ onAdd, onClearAll, onAddDemo }: Props) {
 
   return (
     <div className={styles.panel}>
-      <h3 className={styles.title}>1. ADD PARTICIPANTS</h3>
-      <p className={styles.helper}>Enter one name per line or separated by commas.</p>
+      <h3 className={styles.title}>{t("setup.add_participants.title")}</h3>
+      <p className={styles.helper}>{t("setup.add_participants.helper")}</p>
 
       <textarea
         className={styles.textarea}
         value={text}
         onChange={(e) => setText(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder={"Elias, Linus, ...\nNelio"}
+        placeholder={t("setup.add_participants.placeholder")}
         aria-label="Participant names"
         rows={8}
       />
@@ -66,7 +68,7 @@ export function AddParticipantsPanel({ onAdd, onClearAll, onAddDemo }: Props) {
           <circle cx="8" cy="8" r="6" />
           <path strokeLinecap="round" d="M8 7v4M8 5.5v.5" />
         </svg>
-        You can paste names from spreadsheets or lists.
+        {t("setup.add_participants.tip")}
       </p>
 
       <div className={styles.buttons}>
@@ -75,7 +77,7 @@ export function AddParticipantsPanel({ onAdd, onClearAll, onAddDemo }: Props) {
             <line x1="8" y1="2" x2="8" y2="14" />
             <line x1="2" y1="8" x2="14" y2="8" />
           </svg>
-          ADD PARTICIPANT
+          {t("setup.add_participants.add_btn")}
         </button>
 
         <button className={styles.demoBtn} onClick={onAddDemo} type="button">
@@ -85,7 +87,7 @@ export function AddParticipantsPanel({ onAdd, onClearAll, onAddDemo }: Props) {
             <circle cx="11" cy="5" r="2.5" />
             <path strokeLinecap="round" d="M11 10c2.8 0 5 2.2 5 5" />
           </svg>
-          ADD DEMO DATA
+          {t("setup.add_participants.add_demo")}
         </button>
 
         {!showConfirm ? (
@@ -95,13 +97,13 @@ export function AddParticipantsPanel({ onAdd, onClearAll, onAddDemo }: Props) {
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1M6 7v5M10 7v5" />
               <rect x="3" y="4" width="10" height="10" rx="1" />
             </svg>
-            CLEAR ALL
+            {t("setup.add_participants.clear_all")}
           </button>
         ) : (
           <div className={styles.confirmRow}>
-            <span className={styles.confirmText}>Are you sure?</span>
-            <button className={styles.confirmYes} onClick={confirmClear} type="button">Yes, clear</button>
-            <button className={styles.confirmNo} onClick={() => setShowConfirm(false)} type="button">Cancel</button>
+            <span className={styles.confirmText}>{t("setup.add_participants.confirm_clear")}</span>
+            <button className={styles.confirmYes} onClick={confirmClear} type="button">{t("setup.add_participants.yes_clear")}</button>
+            <button className={styles.confirmNo} onClick={() => setShowConfirm(false)} type="button">{t("setup.add_participants.cancel")}</button>
           </div>
         )}
       </div>

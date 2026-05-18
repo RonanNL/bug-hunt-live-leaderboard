@@ -18,6 +18,7 @@
  */
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { useTranslation } from "react-i18next";
 import styles from "./PrivacyNoticeModal.module.css";
 
 type Props = {
@@ -25,39 +26,11 @@ type Props = {
   onClose: () => void;
 };
 
-const SECTIONS = [
-  {
-    title: "In-Browser Operation",
-    text: "This application runs entirely within your web browser. All session data, participant information, and bug counts are processed locally on your device and are never sent to any external server or third party.",
-  },
-  {
-    title: "No Automatic Data Storage",
-    text: "This application does not use cookies, local storage, session storage, or any other browser persistence mechanism. When you close or refresh the browser tab, all session data is permanently lost unless you have exported it manually.",
-  },
-  {
-    title: "No Data Sharing",
-    text: "No personal data, session data, or usage information is transmitted to or shared with any third party, including the application developer. There is no backend, no database, and no network communication of any kind.",
-  },
-  {
-    title: "Local JSON Export",
-    text: "The only data persistence mechanism available is the manual JSON export feature. Exported files are saved directly to your local device. You are responsible for the storage, handling, and security of any exported files.",
-  },
-  {
-    title: "No Tracking or Analytics",
-    text: "This application does not include any tracking scripts, analytics tools, advertising pixels, or telemetry of any kind. Your usage of the application is entirely private.",
-  },
-  {
-    title: "Important Disclaimers",
-    text: "This application is provided as-is for internal use in bug hunt sessions. It is not intended to process sensitive personal data. If your bug hunt session involves personal data of participants, ensure that your use complies with applicable data protection laws and your organisation's data governance policies.",
-  },
-  {
-    title: "User Responsibility",
-    text: "You are responsible for ensuring that the data entered into this application is handled in accordance with your organisation's policies. Participant names and bug counts entered into this tool are your responsibility to manage appropriately.",
-  },
-];
-
 export function PrivacyNoticeModal({ isOpen, onClose }: Props) {
+  const { t } = useTranslation();
   const dialogRef = useRef<HTMLDivElement>(null);
+
+  const sections = t("modals.privacy.sections", { returnObjects: true }) as { title: string; text: string }[];
 
   useEffect(() => {
     if (!isOpen) return;
@@ -112,7 +85,7 @@ export function PrivacyNoticeModal({ isOpen, onClose }: Props) {
       >
         {/* Non-scrolling header */}
         <div className={styles.modalHeader}>
-          <button className={styles.xBtn} onClick={onClose} type="button" aria-label="Close Privacy Notice">
+          <button className={styles.xBtn} onClick={onClose} type="button" aria-label={t("common.cancel")}>
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" width="14" height="14">
               <line x1="2" y1="2" x2="14" y2="14" />
               <line x1="14" y1="2" x2="2" y2="14" />
@@ -129,14 +102,14 @@ export function PrivacyNoticeModal({ isOpen, onClose }: Props) {
             </svg>
           </div>
 
-          <h2 id="pn-title" className={styles.title}>Privacy Notice</h2>
+          <h2 id="pn-title" className={styles.title}>{t("modals.privacy.title")}</h2>
           <p id="pn-subtitle" className={styles.subtitle}>
-            Your privacy is important. This application is designed with privacy by design.
+            {t("modals.privacy.subtitle")}
           </p>
 
           <div className={styles.sectionsScroll}>
             <div className={styles.sectionList} aria-label="Privacy sections">
-              {SECTIONS.map((section, i) => (
+              {sections.map((section, i) => (
                 <div key={i} className={styles.sectionRow}>
                   <span className={styles.sectionIcon} aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="1.8" width="20" height="20">
@@ -160,17 +133,16 @@ export function PrivacyNoticeModal({ isOpen, onClose }: Props) {
               <circle cx="10" cy="13.5" r="0.9" fill="#d97706" />
             </svg>
             <p className={styles.infoText}>
-              This application does not automatically collect, store, or transmit any personal data.
-              All information entered remains on your device for the duration of your browser session only.
+              {t("modals.privacy.info_box")}
             </p>
           </div>
 
           <div className={styles.footer}>
             <p className={styles.footerText}>
-              By using this application, you acknowledge that this privacy notice is informational and does not replace legal, compliance, or security review.
+              {t("modals.privacy.footer")}
             </p>
             <button className={styles.closeBtn} onClick={onClose} type="button">
-              Close
+              {t("common.cancel")}
             </button>
           </div>
         </div>

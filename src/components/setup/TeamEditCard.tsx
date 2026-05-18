@@ -15,6 +15,7 @@
  *                       ManageTeamsPanel coordinates which participant is being dragged
  */
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import type { Team, Participant } from "../../types/session";
 import styles from "./TeamEditCard.module.css";
 
@@ -39,6 +40,7 @@ export function TeamEditCard({
   onDragStartMember,
   onDropMember,
 }: Props) {
+  const { t } = useTranslation();
   const [editingName, setEditingName] = useState(false);
   const [draftName, setDraftName] = useState(team.name);
   const [isDragOver, setIsDragOver] = useState(false);
@@ -92,7 +94,7 @@ export function TeamEditCard({
               if (e.key === "Enter") commitName();
               if (e.key === "Escape") setEditingName(false);
             }}
-            aria-label="Team name"
+            aria-label={t("setup.teams.edit_team_name_aria")}
           />
         ) : (
           <span className={styles.teamName}>{team.name}</span>
@@ -101,7 +103,7 @@ export function TeamEditCard({
           className={styles.editNameBtn}
           onClick={editingName ? commitName : startEditName}
           type="button"
-          title={editingName ? "Save team name" : "Edit team name"}
+          title={editingName ? t("common.save") : t("setup.teams.edit_team_name_aria")}
         >
           {editingName ? (
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" width="13" height="13">
@@ -117,8 +119,8 @@ export function TeamEditCard({
           className={styles.deleteTeamBtn}
           onClick={onDelete}
           type="button"
-          title="Delete team"
-          aria-label={`Delete ${team.name}`}
+          title={t("setup.teams.delete_team_aria")}
+          aria-label={t("setup.teams.delete_team_aria")}
         >
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" width="13" height="13">
             <polyline points="2,4 14,4" strokeLinecap="round" />
@@ -128,7 +130,7 @@ export function TeamEditCard({
         </button>
       </div>
 
-      <p className={styles.memberCount}>{members.length} members</p>
+      <p className={styles.memberCount}>{t("setup.teams.members")} ({members.length})</p>
 
       {/* Draggable member chips */}
       <div className={styles.memberList}>
@@ -152,8 +154,8 @@ export function TeamEditCard({
               className={styles.removeBtn}
               onClick={() => onRemoveMember(p.id)}
               type="button"
-              title={`Remove ${p.name}`}
-              aria-label={`Remove ${p.name} from ${team.name}`}
+              title={t("setup.teams.remove_member_aria")}
+              aria-label={t("setup.teams.remove_member_aria")}
             >
               <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" width="10" height="10">
                 <line x1="2" y1="2" x2="12" y2="12" />
@@ -163,7 +165,7 @@ export function TeamEditCard({
           </div>
         ))}
         {members.length === 0 && (
-          <p className={styles.emptyMembers}>No members yet</p>
+          <p className={styles.emptyMembers}>{t("setup.participants.empty")}</p>
         )}
       </div>
 
@@ -174,10 +176,10 @@ export function TeamEditCard({
         onChange={(e) => {
           if (e.target.value) onAddMember(e.target.value);
         }}
-        aria-label={`Add participant to ${team.name}`}
+        aria-label={t("setup.teams.add_member_aria")}
         disabled={available.length === 0}
       >
-        <option value="">Add participant...</option>
+        <option value="">+ {t("setup.teams.add_member")}</option>
         {available.map((p) => (
           <option key={p.id} value={p.id}>{p.name}</option>
         ))}

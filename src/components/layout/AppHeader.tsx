@@ -9,6 +9,7 @@
  *
  * All callbacks are passed in from the parent page — this component is stateless.
  */
+import { useTranslation } from "react-i18next";
 import styles from "./AppHeader.module.css";
 
 type Props = {
@@ -17,6 +18,8 @@ type Props = {
 };
 
 export function AppHeader({ onExport, onCloseSession }: Props) {
+  const { t } = useTranslation();
+
   return (
     <header className={styles.header}>
       <div className={styles.left}>
@@ -34,7 +37,7 @@ export function AppHeader({ onExport, onCloseSession }: Props) {
           <line x1="1" y1="16" x2="7" y2="16" stroke="#f5c518" strokeWidth="2" strokeLinecap="round" />
           <line x1="25" y1="16" x2="31" y2="16" stroke="#f5c518" strokeWidth="2" strokeLinecap="round" />
         </svg>
-        <h1 className={styles.title}>BUG HUNT LIVE LEADERBOARD</h1>
+        <h1 className={styles.title}>{t("leaderboard.header_title")}</h1>
       </div>
 
       <div className={styles.right}>
@@ -50,7 +53,7 @@ export function AppHeader({ onExport, onCloseSession }: Props) {
             <path strokeLinecap="round" strokeLinejoin="round" d="M10 3v10m0 0l-3-3m3 3l3-3" />
             <path strokeLinecap="round" strokeLinejoin="round" d="M3 14v2a1 1 0 001 1h12a1 1 0 001-1v-2" />
           </svg>
-          EXPORT SESSION (JSON)
+          {t("common.export_session")}
         </button>
 
         {/* Inline privacy reminder — no data is stored server-side */}
@@ -70,8 +73,8 @@ export function AppHeader({ onExport, onCloseSession }: Props) {
             />
           </svg>
           <div className={styles.privacyText}>
-            <span>No data is stored by this service.</span>
-            <span>Download your JSON file to continue later.</span>
+            <span>{t("leaderboard.privacy_line1")}</span>
+            <span>{t("leaderboard.privacy_line2")}</span>
           </div>
         </div>
 
@@ -80,7 +83,7 @@ export function AppHeader({ onExport, onCloseSession }: Props) {
             <line x1="2" y1="2" x2="12" y2="12" />
             <line x1="12" y1="2" x2="2" y2="12" />
           </svg>
-          CLOSE SESSION
+          {t("common.close_session")}
         </button>
       </div>
     </header>
