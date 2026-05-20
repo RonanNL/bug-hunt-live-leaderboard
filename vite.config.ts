@@ -14,4 +14,18 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: "./",
+  build: {
+    rollupOptions: {
+      output: {
+        // Stable names make corporate allowlists easier and avoid
+        // re-approvals on every deployment due to hash changes.
+        entryFileNames: "assets/app.js",
+        chunkFileNames: "assets/chunk-[name].js",
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name?.endsWith(".css")) return "assets/app.css";
+          return "assets/[name][extname]";
+        },
+      },
+    },
+  },
 })
