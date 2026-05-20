@@ -104,13 +104,13 @@ export function UsageDisclaimerModal({
             <svg viewBox="0 0 24 24" fill="none" width="32" height="32">
               <path
                 d="M12 2l7 3v5c0 5.5-3.2 9.5-7 10.5C8.2 19.5 5 15.5 5 10V5l7-3z"
-                fill="#fde68a"
-                stroke="#d97706"
+                fill="var(--color-accent-soft)"
+                stroke="var(--color-accent-strong)"
                 strokeWidth="1.4"
                 strokeLinejoin="round"
               />
-              <path d="M12 9v4" stroke="#92400e" strokeWidth="2" strokeLinecap="round" />
-              <circle cx="12" cy="15.5" r="1.1" fill="#92400e" />
+              <path d="M12 9v4" stroke="var(--color-text-primary)" strokeWidth="2" strokeLinecap="round" />
+              <circle cx="12" cy="15.5" r="1.1" fill="var(--color-text-primary)" />
             </svg>
           </div>
 

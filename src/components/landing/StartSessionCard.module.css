@@ -15,7 +15,7 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: #fff8d6;
+  background: var(--color-accent-soft);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -100,7 +100,7 @@
 
 .primaryButton:hover {
   background: var(--color-accent-hover);
-  box-shadow: 0 4px 16px rgba(245, 197, 24, 0.5);
+  box-shadow: 0 4px 16px rgba(var(--color-accent-rgb), 0.5);
   transform: translateY(-1px);
 }
 
@@ -112,5 +112,5 @@
 .primaryButton:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
-  box-shadow: 0 0 0 4px rgba(245, 197, 24, 0.25);
+  box-shadow: 0 0 0 4px rgba(var(--color-accent-rgb), 0.25);
 }

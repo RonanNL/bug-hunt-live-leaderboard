@@ -276,7 +276,8 @@
 .detailIcon {
   width: 36px;
   height: 36px;
-  background: #fffbeb;
+  background: var(--color-accent-soft);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.24);
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
@@ -344,7 +345,8 @@
 .privacyIcon {
   width: 40px;
   height: 40px;
-  background: #fffbeb;
+  background: var(--color-accent-soft);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.24);
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;

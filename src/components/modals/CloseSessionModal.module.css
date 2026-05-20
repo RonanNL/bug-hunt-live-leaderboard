@@ -62,13 +62,13 @@
 .iconWrap {
   width: 72px;
   height: 72px;
-  background: #fffbeb;
+  background: var(--color-accent-soft);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border: 2px solid #fde68a;
+  border: 2px solid rgba(var(--color-accent-rgb), 0.35);
 }
 
 /* ── Title ────────────────────────────────────────────────────────────────── */
@@ -101,8 +101,8 @@
   align-items: flex-start;
   gap: var(--space-sm);
   padding: var(--space-md) var(--space-md);
-  background: #fffbeb;
-  border: 1.5px solid #fde68a;
+  background: var(--color-accent-soft);
+  border: 1.5px solid rgba(var(--color-accent-rgb), 0.35);
   border-radius: var(--radius-md);
 }
 
@@ -114,13 +114,13 @@
 .warningTitle {
   font-size: var(--font-size-sm);
   font-weight: 700;
-  color: #92400e;
+  color: var(--color-accent-strong);
   line-height: 1.4;
 }
 
 .warningSubtext {
   font-size: var(--font-size-xs);
-  color: #b45309;
+  color: var(--color-accent-strong);
   margin-top: 3px;
   line-height: 1.5;
 }

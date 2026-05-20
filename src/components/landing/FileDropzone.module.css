@@ -18,18 +18,18 @@
 .dropzone:hover,
 .dropzone:focus-visible {
   border-color: var(--color-accent);
-  background: #fffbeb;
+  background: var(--color-accent-soft);
   color: var(--color-text-primary);
   outline: none;
 }
 
 .dropzone:focus-visible {
-  box-shadow: 0 0 0 3px rgba(245, 197, 24, 0.3);
+  box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.3);
 }
 
 .dragging {
   border-color: var(--color-accent);
-  background: #fffbeb;
+  background: var(--color-accent-soft);
   color: var(--color-text-primary);
 }
 

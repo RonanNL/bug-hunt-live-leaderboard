@@ -11,22 +11,22 @@ export function InfoPanel() {
           {/* Shield outline */}
           <path
             d="M28 2L4 12v20c0 14 10.5 26 24 30 13.5-4 24-16 24-30V12L28 2z"
-            stroke="#f5c518"
+            stroke="var(--color-accent)"
             strokeWidth="2.5"
             strokeLinejoin="round"
           />
           {/* Lock body */}
-          <rect x="19" y="34" width="18" height="14" rx="2" stroke="#f5c518" strokeWidth="2" />
+          <rect x="19" y="34" width="18" height="14" rx="2" stroke="var(--color-accent)" strokeWidth="2" />
           {/* Lock shackle */}
           <path
             d="M22 34v-4a6 6 0 0112 0v4"
-            stroke="#f5c518"
+            stroke="var(--color-accent)"
             strokeWidth="2"
             strokeLinecap="round"
           />
           {/* Keyhole */}
-          <circle cx="28" cy="40" r="2" fill="#f5c518" />
-          <rect x="27" y="40" width="2" height="4" rx="1" fill="#f5c518" />
+          <circle cx="28" cy="40" r="2" fill="var(--color-accent)" />
+          <rect x="27" y="40" width="2" height="4" rx="1" fill="var(--color-accent)" />
         </svg>
       </div>
 

@@ -105,9 +105,9 @@ export function CloseSessionModal({
 
         <div className={styles.iconWrap} aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" width="32" height="32">
-            <path d="M12 3L22 20H2L12 3Z" fill="#f5c518" stroke="#e0b010" strokeWidth="1.2" strokeLinejoin="round" />
-            <path d="M12 10v4" stroke="#1a1200" strokeWidth="2" strokeLinecap="round" />
-            <circle cx="12" cy="17" r="1.1" fill="#1a1200" />
+            <path d="M12 3L22 20H2L12 3Z" fill="var(--color-accent-soft)" stroke="var(--color-accent-strong)" strokeWidth="1.2" strokeLinejoin="round" />
+            <path d="M12 10v4" stroke="var(--color-text-primary)" strokeWidth="2" strokeLinecap="round" />
+            <circle cx="12" cy="17" r="1.1" fill="var(--color-text-primary)" />
           </svg>
         </div>
 
@@ -120,9 +120,9 @@ export function CloseSessionModal({
 
           <div className={styles.warningBox} role="alert">
             <svg viewBox="0 0 20 20" fill="none" width="18" height="18" aria-hidden="true" className={styles.warningIcon}>
-              <path d="M10 2.5L18.5 17H1.5L10 2.5Z" fill="#f5c518" stroke="#e0b010" strokeWidth="1" strokeLinejoin="round" />
-              <path d="M10 8.5v3.5" stroke="#1a1200" strokeWidth="1.7" strokeLinecap="round" />
-              <circle cx="10" cy="14.5" r="0.9" fill="#1a1200" />
+              <path d="M10 2.5L18.5 17H1.5L10 2.5Z" fill="var(--color-accent-soft)" stroke="var(--color-accent-strong)" strokeWidth="1" strokeLinejoin="round" />
+              <path d="M10 8.5v3.5" stroke="var(--color-text-primary)" strokeWidth="1.7" strokeLinecap="round" />
+              <circle cx="10" cy="14.5" r="0.9" fill="var(--color-text-primary)" />
             </svg>
             <div>
               <p className={styles.warningTitle}>{t("modals.close.warning_title")}</p>

@@ -88,12 +88,12 @@ export function BugHuntSetupTipsModal({ isOpen, onClose }: Props) {
         {/* Scrollable body */}
         <div className={styles.scrollBody}>
           <div className={styles.iconWrap} aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="1.8" width="30" height="30">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-strong)" strokeWidth="1.8" width="30" height="30">
               <rect x="3" y="3" width="18" height="18" rx="2" />
               <path strokeLinecap="round" d="M8 8h.5M11 8h5M8 12h.5M11 12h5M8 16h.5M11 16h3" />
-              <circle cx="8" cy="8" r="0.5" fill="#d97706" />
-              <circle cx="8" cy="12" r="0.5" fill="#d97706" />
-              <circle cx="8" cy="16" r="0.5" fill="#d97706" />
+              <circle cx="8" cy="8" r="0.5" fill="var(--color-accent-strong)" />
+              <circle cx="8" cy="12" r="0.5" fill="var(--color-accent-strong)" />
+              <circle cx="8" cy="16" r="0.5" fill="var(--color-accent-strong)" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 1v3M17 1l-1.5 1.5M17 1l1.5 1.5" />
             </svg>
           </div>

@@ -76,9 +76,9 @@
 .iconWrap {
   width: 64px;
   height: 64px;
-  background: #fffbeb;
+  background: var(--color-accent-soft);
   border-radius: 50%;
-  border: 2px solid #fde68a;
+  border: 2px solid rgba(var(--color-accent-rgb), 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -142,15 +142,15 @@
 .badge {
   width: 28px;
   height: 28px;
-  background: #fffbeb;
-  border: 1.5px solid #fde68a;
+  background: var(--color-accent-soft);
+  border: 1.5px solid rgba(var(--color-accent-rgb), 0.35);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: var(--font-size-xs);
   font-weight: 800;
-  color: #92400e;
+  color: var(--color-accent-strong);
   flex-shrink: 0;
   margin-top: 1px;
 }
@@ -181,14 +181,14 @@
   gap: var(--space-sm);
   width: 100%;
   padding: var(--space-md);
-  background: #fffbeb;
-  border: 1.5px solid #fde68a;
+  background: var(--color-accent-soft);
+  border: 1.5px solid rgba(var(--color-accent-rgb), 0.35);
   border-radius: var(--radius-sm);
 }
 
 .infoText {
   font-size: var(--font-size-xs);
-  color: #92400e;
+  color: var(--color-accent-strong);
   line-height: 1.6;
 }
 
