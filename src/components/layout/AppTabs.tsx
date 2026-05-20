@@ -1,7 +1,7 @@
 /**
  * AppTabs — horizontal tab bar used on the Leaderboard, Setup and Contact pages.
  *
- * The three tabs map 1-to-1 with AppPage values ("leaderboard" | "setup" | "contact").
+ * The three tabs map 1-to-1 with AppPage values ("playarea" | "setup" | "contact").
  * Clicking a tab fires onChange; the parent page is responsible for the navigation.
  *
  * Accessibility: rendered as a real `role="tablist"` / `role="tab"` group with
@@ -21,7 +21,7 @@ export function AppTabs({ active, onChange }: Props) {
   const { t } = useTranslation();
 
   const navTabs: { id: TabId; label: string }[] = [
-    { id: "leaderboard", label: t("leaderboard.title") },
+    { id: "leaderboard", label: t("playarea.title") },
     { id: "setup", label: t("setup.title") },
     { id: "contact", label: t("contact.title") },
   ];

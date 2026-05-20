@@ -1,5 +1,5 @@
 /**
- * ranking.ts — leaderboard ranking logic.
+ * ranking.ts — playarea ranking logic.
  *
  * Dense ranking algorithm:
  *   Scores are sorted descending. The rank assigned to each score is
@@ -34,7 +34,7 @@ export type LeaderSummary = {
 
 /**
  * Returns all participants or teams sorted by score descending, with dense ranks assigned.
- * Team entries include the resolved member names for display on the leaderboard card.
+ * Team entries include the resolved member names for display on the playarea card.
  */
 export function getRankedEntries(session: BugHuntSession): RankedEntry[] {
   const raw: Omit<RankedEntry, "rank">[] =
@@ -84,9 +84,9 @@ export function isEntryVisible(rank: number, mode: VisibilityMode): boolean {
 
 /** Human-readable label for the current visibility mode setting. */
 export function getVisibilityLabel(mode: VisibilityMode): string {
-  if (mode === "top3") return i18n.t("leaderboard.visibility.top3");
-  if (mode === "top10") return i18n.t("leaderboard.visibility.top10");
-  return i18n.t("leaderboard.visibility.all");
+  if (mode === "top3") return i18n.t("playarea.visibility.top3");
+  if (mode === "top10") return i18n.t("playarea.visibility.top10");
+  return i18n.t("playarea.visibility.all");
 }
 
 /** Returns the metric card labels appropriate for the current competition mode. */
@@ -106,21 +106,21 @@ export function getCurrentLeaderSummary(ranked: RankedEntry[]): LeaderSummary {
   const leaders = ranked.filter((e) => e.rank === 1 && e.bugsFound > 0);
 
   if (leaders.length === 0) {
-    return { label: "—", helperText: i18n.t("leaderboard.empty"), isMultiple: false };
+    return { label: "—", helperText: i18n.t("playarea.empty"), isMultiple: false };
   }
 
   if (leaders.length === 1) {
     const l = leaders[0];
     return {
       label: l.name,
-      helperText: i18n.t("leaderboard.bug_count", { count: l.bugsFound }),
+      helperText: i18n.t("playarea.bug_count", { count: l.bugsFound }),
       isMultiple: false,
     };
   }
 
   return {
-    label: i18n.t("leaderboard.multiple_leaders"),
-    helperText: i18n.t("leaderboard.tie_summary", { count: leaders.length, bugs: leaders[0].bugsFound }),
+    label: i18n.t("playarea.multiple_leaders"),
+    helperText: i18n.t("playarea.tie_summary", { count: leaders.length, bugs: leaders[0].bugsFound }),
     isMultiple: true,
   };
 }

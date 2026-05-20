@@ -323,7 +323,7 @@ const resources = {
           "title": "User Guide",
           "subtitle": "Quick steps to set up and run your bug hunt session.",
           "tip_label": "Tip:",
-          "tip_text": "A new session starts empty. If no participants or teams exist yet, the Play Area will guide you back to Setup.",
+          "tip_text": "A new session starts empty. If no participants or teams exist yet, the playarea will guide you back to Setup.",
           "footer_text": "Need more help? Please use the Send a Message form on this page",
           "steps": [
             {
@@ -335,7 +335,7 @@ const resources = {
               "text": "Enter participants. In Team-based mode, create or auto-shuffle teams and adjust names if needed."
             },
             {
-              "title": "Save & Go to Play Area",
+              "title": "Save & Go to playarea",
               "text": "Save your setup to populate the play area. Existing rankings and unaffected scores stay intact when you make later setup changes."
             },
             {

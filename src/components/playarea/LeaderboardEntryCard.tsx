@@ -1,5 +1,5 @@
 /**
- * LeaderboardEntryCard — a single row on the live leaderboard representing
+ * LeaderboardEntryCard — a single row on the live playarea representing
  * one participant (individual mode) or one team (team mode).
  *
  * Features:
@@ -53,10 +53,10 @@ export function LeaderboardEntryCard({
         <span className={styles.name}>{name}</span>
         {memberNames !== undefined && (
           <>
-            <span className={styles.memberCount}>{t("leaderboard.member_count", { count: memberNames.length })}</span>
+            <span className={styles.memberCount}>{t("playarea.member_count", { count: memberNames.length })}</span>
             {memberNames.length > 0 && (
               <span className={styles.memberList}>
-                <strong>{t("leaderboard.members_label")}</strong> {memberNames.join(", ")}
+                <strong>{t("playarea.members_label")}</strong> {memberNames.join(", ")}
               </span>
             )}
           </>
@@ -79,7 +79,7 @@ export function LeaderboardEntryCard({
 
       <div className={styles.bugCount}>
         <span className={styles.bugNumber}>{bugsFound}</span>
-        <span className={styles.bugLabel}>{bugsFound === 1 ? t("leaderboard.bugs_singular") : t("leaderboard.bugs")}</span>
+        <span className={styles.bugLabel}>{bugsFound === 1 ? t("playarea.bugs_singular") : t("playarea.bugs")}</span>
       </div>
 
       <div className={styles.controls}>
@@ -88,7 +88,7 @@ export function LeaderboardEntryCard({
           onClick={onDecrement}
           disabled={bugsFound === 0}
           type="button"
-          aria-label={t("leaderboard.remove_bug_aria", { name })}
+          aria-label={t("playarea.remove_bug_aria", { name })}
         >
           −
         </button>
@@ -96,7 +96,7 @@ export function LeaderboardEntryCard({
           className={styles.plusBtn}
           onClick={onIncrement}
           type="button"
-          aria-label={t("leaderboard.add_bug_aria", { name })}
+          aria-label={t("playarea.add_bug_aria", { name })}
         >
           +
         </button>

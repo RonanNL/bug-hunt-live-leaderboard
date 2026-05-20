@@ -173,7 +173,7 @@
   outline-offset: 2px;
 }
 
-/* Empty leaderboard state */
+/* Empty playarea state */
 .emptyState {
   display: flex;
   flex-direction: column;

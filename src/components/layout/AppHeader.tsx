@@ -37,7 +37,7 @@ export function AppHeader({ onExport, onCloseSession }: Props) {
           <line x1="1" y1="16" x2="7" y2="16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           <line x1="25" y1="16" x2="31" y2="16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         </svg>
-        <h1 className={styles.title}>{t("leaderboard.header_title")}</h1>
+        <h1 className={styles.title}>{t("playarea.header_title")}</h1>
       </div>
 
       <div className={styles.right}>
@@ -73,8 +73,8 @@ export function AppHeader({ onExport, onCloseSession }: Props) {
             />
           </svg>
           <div className={styles.privacyText}>
-            <span>{t("leaderboard.privacy_line1")}</span>
-            <span>{t("leaderboard.privacy_line2")}</span>
+            <span>{t("playarea.privacy_line1")}</span>
+            <span>{t("playarea.privacy_line2")}</span>
           </div>
         </div>
 

@@ -21,11 +21,11 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSession } from "../state/sessionStore";
 import { AppHeader } from "../components/layout/AppHeader";
-import { DashboardMetricCard } from "../components/leaderboard/DashboardMetricCard";
+import { DashboardMetricCard } from "../components/playarea/DashboardMetricCard";
 import { AppTabs, type TabId } from "../components/layout/AppTabs";
-import { LeaderboardEntryCard } from "../components/leaderboard/LeaderboardEntryCard";
-import { VisibilitySelector } from "../components/leaderboard/VisibilitySelector";
-import { TimerPanel } from "../components/leaderboard/TimerPanel";
+import { LeaderboardEntryCard } from "../components/playarea/LeaderboardEntryCard";
+import { VisibilitySelector } from "../components/playarea/VisibilitySelector";
+import { TimerPanel } from "../components/playarea/TimerPanel";
 import { CloseSessionModal } from "../components/modals/CloseSessionModal";
 import { exportSessionAsJSON } from "../logic/exportSession";
 import {
@@ -69,7 +69,7 @@ export function LeaderboardPage() {
   if (!session) {
     return (
       <div className={styles.page}>
-        <p style={{ padding: "2rem", color: "#6b7280" }}>{t("leaderboard.empty")}</p>
+        <p style={{ padding: "2rem", color: "#6b7280" }}>{t("playarea.empty")}</p>
       </div>
     );
   }
@@ -114,10 +114,10 @@ export function LeaderboardPage() {
         />
 
         <DashboardMetricCard
-          label={t("leaderboard.metrics.bugs_found")}
+          label={t("playarea.metrics.bugs_found")}
           compactLabel="Total:"
           value={String(totalBugs)}
-          helperText={session.mode === "team" ? t("leaderboard.metrics.bugs_across_teams") : t("leaderboard.metrics.bugs_across_participants")}
+          helperText={session.mode === "team" ? t("playarea.metrics.bugs_across_teams") : t("playarea.metrics.bugs_across_participants")}
           iconBg="#fffbeb"
           icon={
             <svg viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="1.8">
@@ -128,7 +128,7 @@ export function LeaderboardPage() {
         />
 
         <DashboardMetricCard
-          label={leaderSummary.isMultiple ? t("leaderboard.leaders_title") : t("leaderboard.leader_title")}
+          label={leaderSummary.isMultiple ? t("playarea.leaders_title") : t("playarea.leader_title")}
           compactLabel="Leader:"
           value={leaderSummary.label}
           helperText={leaderSummary.helperText}
@@ -141,16 +141,16 @@ export function LeaderboardPage() {
         />
 
         <DashboardMetricCard
-          label={t("leaderboard.metrics.time_elapsed")}
+          label={t("playarea.metrics.time_elapsed")}
           compactLabel="Time:"
           value={formatTime(session.timer.elapsedSeconds)}
           compactValue={formatTimeHoursMinutes(session.timer.elapsedSeconds)}
           helperText={
             session.timer.status === "not_started"
-              ? t("leaderboard.status_not_started")
+              ? t("playarea.status_not_started")
               : session.timer.status === "running"
-              ? t("leaderboard.status_running")
-              : t("leaderboard.status_paused")
+              ? t("playarea.status_running")
+              : t("playarea.status_paused")
           }
           iconBg="#eff6ff"
           icon={
@@ -171,14 +171,14 @@ export function LeaderboardPage() {
         <div className={styles.content}>
           <div className={styles.sectionHeader}>
             <div className={styles.sectionMeta}>
-              <h2 className={styles.sectionTitle}>{t("leaderboard.title")}</h2>
+              <h2 className={styles.sectionTitle}>{t("playarea.title")}</h2>
               <p className={styles.sectionHelper}>
-                {hasEntries ? t("leaderboard.helper_has_entries") : t("leaderboard.helper_no_entries")}
+                {hasEntries ? t("playarea.helper_has_entries") : t("playarea.helper_no_entries")}
               </p>
             </div>
             {hasEntries && (
               <div className={styles.visibilityRow}>
-                <span className={styles.visibilityLabel}>{t("leaderboard.visibility_label")}</span>
+                <span className={styles.visibilityLabel}>{t("playarea.visibility_label")}</span>
                 <VisibilitySelector
                   value={session.visibilityMode}
                   onChange={handleVisibilityChange}
@@ -197,9 +197,9 @@ export function LeaderboardPage() {
                 </svg>
               </div>
               <div>
-                <h3 className={styles.emptyTitle}>{t("leaderboard.no_entries")}</h3>
+                <h3 className={styles.emptyTitle}>{t("playarea.no_entries")}</h3>
                 <p className={styles.emptyBody}>
-                  {t("leaderboard.no_entries_body")}
+                  {t("playarea.no_entries_body")}
                 </p>
               </div>
               <div className={styles.emptyActions}>
@@ -211,7 +211,7 @@ export function LeaderboardPage() {
                   <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true">
                     <path d="M6 4l10 6-10 6V4z" />
                   </svg>
-                  {t("leaderboard.setup_individual")}
+                  {t("playarea.setup_individual")}
                 </button>
                 <button
                   className={styles.emptyBtnSecondary}
@@ -222,7 +222,7 @@ export function LeaderboardPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13 6H7a2 2 0 00-2 2v4a2 2 0 002 2h6a2 2 0 002-2V8a2 2 0 00-2-2z" />
                     <path strokeLinecap="round" d="M10 2v2M10 16v2M4 10H2M18 10h-2" />
                   </svg>
-                  {t("leaderboard.setup_team")}
+                  {t("playarea.setup_team")}
                 </button>
               </div>
             </div>
