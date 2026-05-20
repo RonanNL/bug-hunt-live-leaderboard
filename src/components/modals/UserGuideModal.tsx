@@ -86,7 +86,7 @@ export function UserGuideModal({ isOpen, onClose }: Props) {
         {/* Scrollable body */}
         <div className={styles.scrollBody}>
           <div className={styles.iconWrap} aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="1.8" width="30" height="30">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-strong)" strokeWidth="1.8" width="30" height="30">
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 19.5A2.5 2.5 0 016.5 17H20" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
               <path strokeLinecap="round" d="M9 7h6M9 11h6M9 15h4" />
@@ -112,9 +112,9 @@ export function UserGuideModal({ isOpen, onClose }: Props) {
 
           <div className={styles.tip} role="note">
             <svg viewBox="0 0 20 20" fill="none" width="18" height="18" style={{ flexShrink: 0 }} aria-hidden="true">
-              <circle cx="10" cy="8" r="5" stroke="#d97706" strokeWidth="1.6" />
-              <path strokeLinecap="round" d="M8 13.5c0 1 4 1 4 0" stroke="#d97706" strokeWidth="1.4" />
-              <path strokeLinecap="round" d="M10 11v2" stroke="#d97706" strokeWidth="1.6" />
+              <circle cx="10" cy="8" r="5" stroke="var(--color-accent-strong)" strokeWidth="1.6" />
+              <path strokeLinecap="round" d="M8 13.5c0 1 4 1 4 0" stroke="var(--color-accent-strong)" strokeWidth="1.4" />
+              <path strokeLinecap="round" d="M10 11v2" stroke="var(--color-accent-strong)" strokeWidth="1.6" />
             </svg>
             <p className={styles.tipText}>
               <strong>{t("modals.guide.tip_label")}</strong> {t("modals.guide.tip_text")}

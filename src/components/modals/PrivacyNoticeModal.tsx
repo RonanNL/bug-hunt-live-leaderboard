@@ -96,7 +96,7 @@ export function PrivacyNoticeModal({ isOpen, onClose }: Props) {
         {/* Scrollable body */}
         <div className={styles.scrollBody}>
           <div className={styles.iconWrap} aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="1.8" width="30" height="30">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-strong)" strokeWidth="1.8" width="30" height="30">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l7 3v5c0 5.5-3.2 9.5-7 10.5C8.2 19.5 5 15.5 5 10V5l7-3z" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
             </svg>
@@ -112,7 +112,7 @@ export function PrivacyNoticeModal({ isOpen, onClose }: Props) {
               {sections.map((section, i) => (
                 <div key={i} className={styles.sectionRow}>
                   <span className={styles.sectionIcon} aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="1.8" width="20" height="20">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-strong)" strokeWidth="1.8" width="20" height="20">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l7 3v5c0 5.5-3.2 9.5-7 10.5C8.2 19.5 5 15.5 5 10V5l7-3z" />
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
                     </svg>
@@ -128,9 +128,9 @@ export function PrivacyNoticeModal({ isOpen, onClose }: Props) {
 
           <div className={styles.infoBox} role="note">
             <svg viewBox="0 0 20 20" fill="none" width="18" height="18" style={{ flexShrink: 0 }} aria-hidden="true">
-              <circle cx="10" cy="10" r="8" stroke="#d97706" strokeWidth="1.6" />
-              <path strokeLinecap="round" d="M10 7v4" stroke="#d97706" strokeWidth="1.8" />
-              <circle cx="10" cy="13.5" r="0.9" fill="#d97706" />
+              <circle cx="10" cy="10" r="8" stroke="var(--color-accent-strong)" strokeWidth="1.6" />
+              <path strokeLinecap="round" d="M10 7v4" stroke="var(--color-accent-strong)" strokeWidth="1.8" />
+              <circle cx="10" cy="13.5" r="0.9" fill="var(--color-accent-strong)" />
             </svg>
             <p className={styles.infoText}>
               {t("modals.privacy.info_box")}

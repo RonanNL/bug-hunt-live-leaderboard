@@ -273,7 +273,7 @@ export function ContactPage() {
             <h3 className={styles.sideCardTitle}>{t("contact.details.title")}</h3>
             <div className={styles.detailRow}>
               <span className={styles.detailIcon}>
-                <svg viewBox="0 0 20 20" fill="none" stroke="#d97706" strokeWidth="1.6" width="18" height="18">
+                <svg viewBox="0 0 20 20" fill="none" stroke="var(--color-accent-strong)" strokeWidth="1.6" width="18" height="18">
                   <rect x="2" y="5" width="16" height="11" rx="1.5" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2 6.5l8 5.5 8-5.5" />
                 </svg>
@@ -286,7 +286,7 @@ export function ContactPage() {
             <div className={styles.detailDivider} />
             <div className={styles.detailRow}>
               <span className={styles.detailIcon}>
-                <svg viewBox="0 0 20 20" fill="none" stroke="#d97706" strokeWidth="1.6" width="18" height="18">
+                <svg viewBox="0 0 20 20" fill="none" stroke="var(--color-accent-strong)" strokeWidth="1.6" width="18" height="18">
                   <circle cx="10" cy="10" r="7.5" />
                   <path strokeLinecap="round" d="M10 6v4l2.5 2" />
                 </svg>
@@ -299,7 +299,7 @@ export function ContactPage() {
             <div className={styles.detailDivider} />
             <div className={styles.detailRow}>
               <span className={styles.detailIcon}>
-                <svg viewBox="0 0 20 20" fill="none" stroke="#d97706" strokeWidth="1.6" width="18" height="18">
+                <svg viewBox="0 0 20 20" fill="none" stroke="var(--color-accent-strong)" strokeWidth="1.6" width="18" height="18">
                   <rect x="2" y="4" width="16" height="14" rx="1.5" />
                   <path strokeLinecap="round" d="M6 2v3M14 2v3M2 9h16" />
                 </svg>
@@ -352,7 +352,7 @@ export function ContactPage() {
             <h3 className={styles.sideCardTitle}>{t("contact.data_privacy.title")}</h3>
             <div className={styles.privacyRow}>
               <span className={styles.privacyIcon} aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="1.6" width="24" height="24">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-strong)" strokeWidth="1.6" width="24" height="24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l7 3v5c0 5.5-3.2 9.5-7 10.5C8.2 19.5 5 15.5 5 10V5l7-3z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
                 </svg>

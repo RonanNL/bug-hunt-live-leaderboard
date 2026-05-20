@@ -24,7 +24,7 @@ function CheckItem({ text }: { text: string }) {
         fill="none"
         aria-hidden="true"
       >
-        <circle cx="10" cy="10" r="10" fill="#f5c518" />
+        <circle cx="10" cy="10" r="10" fill="var(--color-accent)" />
         <path
           d="M6 10.5l2.5 2.5 5-5"
           stroke="#1a1200"

@@ -18,6 +18,11 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import type { BugHuntSession } from "../types/session";
+import {
+  buildPathForLanguageAndTheme,
+  getLanguageAndThemeFromPath,
+  type ThemeId,
+} from "../logic/theme";
 import { StartSessionCard } from "../components/landing/StartSessionCard";
 import { ImportSessionCard } from "../components/landing/ImportSessionCard";
 import { InfoPanel } from "../components/landing/InfoPanel";
@@ -29,9 +34,10 @@ type PendingAction = "start-new-session" | "load-existing-session" | null;
 type Props = {
   onStartNewSession: () => void;
   onImportSession: (session: BugHuntSession) => void;
+  currentTheme: ThemeId;
 };
 
-export function LandingPage({ onStartNewSession, onImportSession }: Props) {
+export function LandingPage({ onStartNewSession, onImportSession, currentTheme }: Props) {
   const { t, i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
@@ -40,7 +46,8 @@ export function LandingPage({ onStartNewSession, onImportSession }: Props) {
   const [pendingAction, setPendingAction] = useState<PendingAction>(null);
   const [pendingSession, setPendingSession] = useState<BugHuntSession | null>(null);
 
-  const isGerman = location.pathname.toLowerCase().startsWith("/de");
+  const { language } = getLanguageAndThemeFromPath(location.pathname);
+  const isGerman = language === "de";
 
   const openDisclaimer = (action: PendingAction, session?: BugHuntSession) => {
     setPendingAction(action);
@@ -74,11 +81,18 @@ export function LandingPage({ onStartNewSession, onImportSession }: Props) {
   };
 
   const handleLanguageSwitch = (language: "en" | "de") => {
-    const targetPath = language === "de" ? "/de" : "/";
+    const targetPath = buildPathForLanguageAndTheme(language, currentTheme);
     if (location.pathname !== targetPath) {
       navigate(targetPath);
     }
     void i18n.changeLanguage(language);
+  };
+
+  const handleThemeChange = (theme: ThemeId) => {
+    const targetPath = buildPathForLanguageAndTheme(language, theme);
+    if (location.pathname !== targetPath) {
+      navigate(targetPath);
+    }
   };
 
   return (
@@ -145,6 +159,23 @@ export function LandingPage({ onStartNewSession, onImportSession }: Props) {
 
         <InfoPanel />
       </main>
+
+      <div className={styles.themeSelectorRow}>
+        <label htmlFor="theme-selector" className={styles.themeSelectorLabel}>
+          {t("landing.theme_label")}
+        </label>
+        <select
+          id="theme-selector"
+          className={styles.themeSelector}
+          value={currentTheme}
+          onChange={(e) => handleThemeChange(e.target.value as ThemeId)}
+        >
+          <option value="yellow">Yellow</option>
+          <option value="red">Red</option>
+          <option value="blue">Blue</option>
+          <option value="green">Green</option>
+        </select>
+      </div>
 
       <footer className={styles.footer}>
         <p className={styles.version}>{t("common.version")}</p>

@@ -29,13 +29,13 @@ export function AppHeader({ onExport, onCloseSession }: Props) {
           fill="none"
           aria-hidden="true"
         >
-          <circle cx="16" cy="16" r="13" stroke="#f5c518" strokeWidth="2" />
-          <circle cx="16" cy="16" r="7" stroke="#f5c518" strokeWidth="2" />
-          <circle cx="16" cy="16" r="2.5" fill="#f5c518" />
-          <line x1="16" y1="1" x2="16" y2="7" stroke="#f5c518" strokeWidth="2" strokeLinecap="round" />
-          <line x1="16" y1="25" x2="16" y2="31" stroke="#f5c518" strokeWidth="2" strokeLinecap="round" />
-          <line x1="1" y1="16" x2="7" y2="16" stroke="#f5c518" strokeWidth="2" strokeLinecap="round" />
-          <line x1="25" y1="16" x2="31" y2="16" stroke="#f5c518" strokeWidth="2" strokeLinecap="round" />
+          <circle cx="16" cy="16" r="13" stroke="currentColor" strokeWidth="2" />
+          <circle cx="16" cy="16" r="7" stroke="currentColor" strokeWidth="2" />
+          <circle cx="16" cy="16" r="2.5" fill="currentColor" />
+          <line x1="16" y1="1" x2="16" y2="7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <line x1="16" y1="25" x2="16" y2="31" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <line x1="1" y1="16" x2="7" y2="16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <line x1="25" y1="16" x2="31" y2="16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         </svg>
         <h1 className={styles.title}>{t("leaderboard.header_title")}</h1>
       </div>

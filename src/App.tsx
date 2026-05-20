@@ -17,6 +17,7 @@ import { LeaderboardPage } from "./pages/LeaderboardPage";
 import { SetupPage } from "./pages/SetupPage";
 import { ContactPage } from "./pages/ContactPage";
 import { createBlankSession } from "./logic/defaultSession";
+import { getLanguageAndThemeFromPath } from "./logic/theme";
 import type { BugHuntSession } from "./types/session";
 import type { AppPage } from "./state/sessionStore";
 import "./styles/globals.css";
@@ -27,16 +28,20 @@ function AppRouter() {
   const { currentPage, startSession, loadSession } = useSession();
   const { t, i18n } = useTranslation();
   const location = useLocation();
+  const { language, theme } = getLanguageAndThemeFromPath(location.pathname);
 
   const handleStartNewSession = () => startSession(createBlankSession());
   const handleImportSession = (session: BugHuntSession) => loadSession(session);
 
   useEffect(() => {
-    const nextLanguage = location.pathname.toLowerCase().startsWith("/de") ? "de" : "en";
-    if (i18n.resolvedLanguage !== nextLanguage) {
-      void i18n.changeLanguage(nextLanguage);
+    if (i18n.resolvedLanguage !== language) {
+      void i18n.changeLanguage(language);
     }
-  }, [location.pathname, i18n]);
+  }, [language, i18n]);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     if (!PAGES_WITH_LEAVE_WARNING.includes(currentPage)) return;
@@ -62,6 +67,7 @@ function AppRouter() {
       <LandingPage
         onStartNewSession={handleStartNewSession}
         onImportSession={handleImportSession}
+        currentTheme={theme}
       />
     );
   }
