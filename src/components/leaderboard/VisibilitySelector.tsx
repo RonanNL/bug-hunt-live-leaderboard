@@ -1,5 +1,5 @@
 /**
- * VisibilitySelector — dropdown control that filters how many playarea entries
+ * VisibilitySelector — dropdown control that filters how many leaderboard entries
  * are shown on screen.
  *
  * Options:
@@ -43,11 +43,11 @@ export function VisibilitySelector({ value, onChange }: Props) {
         className={styles.select}
         value={value}
         onChange={(e) => onChange(e.target.value as VisibilityMode)}
-        aria-label={t("playarea.visibility.label")}
+        aria-label={t("leaderboard.visibility.label")}
       >
-        <option value="all">{t("playarea.visibility.all")}</option>
-        <option value="top3">{t("playarea.visibility.top3")}</option>
-        <option value="top10">{t("playarea.visibility.top10")}</option>
+        <option value="all">{t("leaderboard.visibility.all")}</option>
+        <option value="top3">{t("leaderboard.visibility.top3")}</option>
+        <option value="top10">{t("leaderboard.visibility.top10")}</option>
       </select>
       <svg
         className={styles.chevron}

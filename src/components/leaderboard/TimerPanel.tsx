@@ -36,7 +36,7 @@ export function TimerPanel({ elapsedSeconds, status, onStart, onPause, onReset }
     }
   };
 
-  const primaryLabel = status === "running" ? t("playarea.timer.pause") : status === "paused" ? t("playarea.timer.resume") : t("playarea.timer.start");
+  const primaryLabel = status === "running" ? t("leaderboard.timer.pause") : status === "paused" ? t("leaderboard.timer.resume") : t("leaderboard.timer.start");
 
   const statusLabel = t(`leaderboard.timer.status_${status}`);
 
@@ -56,7 +56,7 @@ export function TimerPanel({ elapsedSeconds, status, onStart, onPause, onReset }
         </svg>
 
         <div className={styles.timerDisplay}>
-          <span className={styles.timerLabel}>{t("playarea.timer.label")}</span>
+          <span className={styles.timerLabel}>{t("leaderboard.timer.label")}</span>
           <span className={styles.timerTime}>{formatTime(elapsedSeconds)}</span>
           <span className={`${styles.timerStatus} ${styles[status]}`}>
             {statusLabel}
@@ -92,11 +92,11 @@ export function TimerPanel({ elapsedSeconds, status, onStart, onPause, onReset }
             className={styles.endeBtn}
             onClick={onReset}
             type="button"
-            aria-label={t("playarea.timer.ende_aria")}
+            aria-label={t("leaderboard.timer.ende_aria")}
             disabled={status === "not_started"}
           >
             <span className={styles.endeSquare} aria-hidden="true" />
-            {t("playarea.timer.ende")}
+            {t("leaderboard.timer.ende")}
           </button>
         </div>
       </div>

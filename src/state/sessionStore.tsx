@@ -78,11 +78,11 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
   const navigateTo = (page: AppPage) =>
     setState((prev) => ({ ...prev, currentPage: page }));
 
-  /** Load an imported session and jump straight to the playarea. */
+  /** Load an imported session and jump straight to the leaderboard. */
   const loadSession = (session: BugHuntSession) =>
     setState({ currentPage: "leaderboard", session });
 
-  /** Start a new blank session and jump straight to the playarea. */
+  /** Start a new blank session and jump straight to the leaderboard. */
   const startSession = (session: BugHuntSession) =>
     setState({ currentPage: "leaderboard", session });
 

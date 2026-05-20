@@ -26,7 +26,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSession } from "../state/sessionStore";
 import { AppHeader } from "../components/layout/AppHeader";
-import { DashboardMetricCard } from "../components/playarea/DashboardMetricCard";
+import { DashboardMetricCard } from "../components/leaderboard/DashboardMetricCard";
 import { AppTabs, type TabId } from "../components/layout/AppTabs";
 import { ModeSelector } from "../components/setup/ModeSelector";
 import { AddParticipantsPanel } from "../components/setup/AddParticipantsPanel";
@@ -108,7 +108,7 @@ export function SetupPage() {
         onCloseSession={() => setShowCloseConfirm(true)}
       />
 
-      {/* Four summary metric cards — mirrors the playarea page */}
+      {/* Four summary metric cards — mirrors the leaderboard page */}
       <div className={styles.dashboardRow}>
         <DashboardMetricCard
           label={entryLabel.count}
@@ -125,10 +125,10 @@ export function SetupPage() {
           }
         />
         <DashboardMetricCard
-          label={t("playarea.metrics.bugs_found")}
+          label={t("leaderboard.metrics.bugs_found")}
           compactLabel="Total:"
           value={String(totalBugs)}
-          helperText={session.mode === "team" ? t("playarea.metrics.bugs_across_teams") : t("playarea.metrics.bugs_across_participants")}
+          helperText={session.mode === "team" ? t("leaderboard.metrics.bugs_across_teams") : t("leaderboard.metrics.bugs_across_participants")}
           iconBg="#fffbeb"
           icon={
             <svg viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="1.8">
@@ -138,7 +138,7 @@ export function SetupPage() {
           }
         />
         <DashboardMetricCard
-          label={leaderSummary.isMultiple ? t("playarea.leaders_title") : t("playarea.leader_title")}
+          label={leaderSummary.isMultiple ? t("leaderboard.leaders_title") : t("leaderboard.leader_title")}
           compactLabel="Leader:"
           value={leaderSummary.label}
           helperText={leaderSummary.helperText}
@@ -150,16 +150,16 @@ export function SetupPage() {
           }
         />
         <DashboardMetricCard
-          label={t("playarea.metrics.time_elapsed")}
+          label={t("leaderboard.metrics.time_elapsed")}
           compactLabel="Time:"
           value={formatTime(session.timer.elapsedSeconds)}
           compactValue={formatTimeHoursMinutes(session.timer.elapsedSeconds)}
           helperText={
             session.timer.status === "not_started"
-              ? t("playarea.status_not_started")
+              ? t("leaderboard.status_not_started")
               : session.timer.status === "running"
-              ? t("playarea.status_running")
-              : t("playarea.status_paused")
+              ? t("leaderboard.status_running")
+              : t("leaderboard.status_paused")
           }
           iconBg="#eff6ff"
           icon={

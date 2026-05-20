@@ -14,7 +14,7 @@
 export type BugHuntMode = "team" | "individual";
 
 /**
- * Controls how many playarea entries are shown on screen.
+ * Controls how many leaderboard entries are shown on screen.
  *   all   — every entry visible
  *   top3  — only rank 1–3 visible; others are blurred
  *   top10 — only rank 1–10 visible; others are blurred
