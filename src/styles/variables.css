@@ -77,10 +77,10 @@
 }
 
 :root[data-theme="blue"] {
-  --theme-color-1: #1b7ce4;
-  --theme-color-2: #e0efff;
-  --theme-color-3: #0956aa;
-  --color-accent-rgb: 27, 124, 228;
+  --theme-color-1: #14c7c3;
+  --theme-color-2: #ccfffe;
+  --theme-color-3: #14c7c3;
+  --color-accent-rgb: 20, 199, 195;
 }
 
 :root[data-theme="green"] {

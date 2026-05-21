@@ -108,7 +108,7 @@ export function SetupPage() {
         onCloseSession={() => setShowCloseConfirm(true)}
       />
 
-      {/* Four summary metric cards — mirrors the Play Area page */}
+      {/* Four summary metric cards — mirrors the leaderboard page */}
       <div className={styles.dashboardRow}>
         <DashboardMetricCard
           label={entryLabel.count}

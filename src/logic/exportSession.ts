@@ -26,7 +26,7 @@ export function exportSessionAsJSON(session: BugHuntSession): void {
   const date = new Date().toISOString().split("T")[0];
   const a = document.createElement("a");
   a.href = url;
-  a.download = `bug-hunt-play-area-${date}.json`;
+  a.download = `live-bug-hunt_${date}.json`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
